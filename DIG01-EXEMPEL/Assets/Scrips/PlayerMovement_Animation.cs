@@ -36,9 +36,7 @@ public class PlayerMovement_Animation : MonoBehaviour
 
     void OnMove(InputValue value)
     {
-        moveInput = value.Get<Vector2>();
-        if(isGrounded)
-        ChangeAnimationState(PLAYER_RUN);
+        moveInput = value.Get<Vector2>();      
     }
 
     void OnJump()
@@ -70,8 +68,19 @@ public class PlayerMovement_Animation : MonoBehaviour
             rb.AddForce(Vector2.up * jumpImpulse, ForceMode2D.Impulse);
             shouldJump = false;
             ChangeAnimationState(PLAYER_JUMP);
-        }         
+        }
+
+        if (moveInput.x != 0)
+        {
+            transform.localScale = new Vector2(Mathf.Sign(moveInput.x), transform.localScale.y);
+            ChangeAnimationState(PLAYER_RUN);
+        }
+        else
+        {
+            ChangeAnimationState(PLAYER_IDLE);
+        }
     }
+
     void ChangeAnimationState(string newState) 
     {
         //Stoppa samma animation från att avbryta sig själv

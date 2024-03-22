@@ -123,39 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &617477853 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5535971030466303019, guid: ee9c588ea3215db4fa29f09604678754, type: 3}
-  m_PrefabInstance: {fileID: 619902996}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &617477861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 617477853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8abb3e1c7dadca14ea292a23ca582cc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundFilter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 1
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 80
-    maxNormalAngle: 100
-  moveSpeed: 5
-  jumpImpulse: 6
 --- !u!1001 &619902996
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -164,10 +131,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5392074630233171007, guid: ee9c588ea3215db4fa29f09604678754, type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5535971030466303019, guid: ee9c588ea3215db4fa29f09604678754, type: 3}
       propertyPath: m_Name
       value: Player
@@ -212,14 +175,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6114103726749625866, guid: ee9c588ea3215db4fa29f09604678754, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5535971030466303019, guid: ee9c588ea3215db4fa29f09604678754, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 617477861}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee9c588ea3215db4fa29f09604678754, type: 3}
 --- !u!1001 &724598552
 PrefabInstance:
