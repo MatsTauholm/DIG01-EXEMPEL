@@ -131,14 +131,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1297643282676751888, guid: ee9c588ea3215db4fa29f09604678754, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.7102538
-      objectReference: {fileID: 0}
-    - target: {fileID: 2477140254183280012, guid: ee9c588ea3215db4fa29f09604678754, type: 3}
-      propertyPath: groundFilter.layerMask.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
     - target: {fileID: 5535971030466303019, guid: ee9c588ea3215db4fa29f09604678754, type: 3}
       propertyPath: m_Name
       value: Player

@@ -4,51 +4,55 @@ using UnityEngine;
 
 public class PlayerMovement_Animation : MonoBehaviour
 {
-    public ContactFilter2D groundFilter;
-    private Vector2 movement;
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float jumpForce = 850;
+    [SerializeField] private float attackDelay = 0.3f;
+    private Animator animator;
     private Rigidbody2D rb;
-    private BoxCollider2D coll;
-    private Animator ani;
-    private int groundMask;
+    private Vector2 movement;
 
-    private float xAxis;
-    public float moveSpeed = 5f;
-    public float jumpImpulse = 5f;
-    private bool isGrounded;
     private bool isJumpPressed;
-    private string currentState;
+    private bool isGrounded;
+    private bool isAttackPressed;
+    private bool isAttacking;
+    private int groundMask;
+    private string currentAnimaton;
 
-    //Animation states satta som konstanter för att slippa använda strings senare i koden
-    const string PLAYER_IDLE = "HeroKnight_Idle";
-    const string PLAYER_RUN = "HeroKnight_Run";
-    //const string PLAYER_ATTACK = "HeroKnight_Attack1";
-    //const string PLAYER_DEAD = "HeroKnight_Death";
-    const string PLAYER_JUMP = "HeroKnight_Jump";
-
+    //Animation States
+    const string PLAYER_IDLE = "Player_Idle";
+    const string PLAYER_RUN = "Player_Run";
+    const string PLAYER_JUMP = "Player_Jump";
+    const string PLAYER_ATTACK = "Player_Attack";
+    const string PLAYER_AIR_ATTACK = "Player_Air_Attack";
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        coll = GetComponent<BoxCollider2D>();
-        ani = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         groundMask = 1 << LayerMask.NameToLayer("Ground");
     }
 
     void Update()
     {
         //Checking for inputs
-        xAxis = Input.GetAxisRaw("Horizontal");
+        movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        //space jump key pressed?
+        //Space jump key pressed?
         if (Input.GetKeyDown(KeyCode.Space))
         {
             isJumpPressed = true;
         }
+
+        //Attack key pressed?
+        if (Input.GetKeyDown(KeyCode.RightControl))
+        {
+            isAttackPressed = true;
+        }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.1f, groundMask);
-
+        //Check if player is on the ground
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.1f, groundMask); //See if ray hits ground below players position
         if (hit.collider != null)
         {
             isGrounded = true;
@@ -58,54 +62,67 @@ public class PlayerMovement_Animation : MonoBehaviour
             isGrounded = false;
         }
 
-        //isGrounded = rb.IsTouching(groundFilter); //Om spelaren rör vid marken
+        //Check update movement based on input and assigne
+        Vector2 vel = new Vector2(movement.x * moveSpeed, rb.velocity.y);
+        rb.velocity = vel;
 
-        Vector2 playerVelocity = new Vector2(xAxis * moveSpeed, rb.velocity.y);
-        rb.velocity = playerVelocity;
-
-
-        if (isGrounded)
+        //Check if moveing and not attacking or falling
+        if (isGrounded && !isAttacking)
         {
-            if (xAxis == 0) //Om inte spelaren rör på sig och står på marken
+            if (movement.x != 0)
             {
-                ChangeAnimationState(PLAYER_IDLE); //Ändra state till "Idle"
+                ChangeAnimationState(PLAYER_RUN);
+                transform.localScale = new Vector2(Mathf.Sign(movement.x), transform.localScale.y);  //Mirror sprite if moving left
             }
             else
             {
-                ChangeAnimationState(PLAYER_RUN);
-                transform.localScale = new Vector2(Mathf.Sign(xAxis), transform.localScale.y);  //Spegla sprite:n om spelaren rör sig åt vänste
+                ChangeAnimationState(PLAYER_IDLE);
             }
         }
 
-        if (isJumpPressed && isGrounded)  //Om spelaren är på marken och spelaren har tryckt på hoppknappen
+        //Check if trying to jump 
+        if (isJumpPressed && isGrounded)
         {
-            rb.AddForce(Vector2.up * jumpImpulse, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isJumpPressed = false;
             ChangeAnimationState(PLAYER_JUMP);
         }
 
-        Debug.Log(currentState);
-        Debug.Log(isGrounded);
-    }
-
-    void ChangeAnimationState(string newState) 
-    {
-        //Stoppa samma animation från att avbryta sig själv
-        if (currentState == newState) return;
-
-        //Spela animationen
-        ani.Play(newState);
-
-        //Uppdatera den nuvarande animationen
-        currentState = newState;
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (coll.IsTouchingLayers(LayerMask.GetMask("Hazards")))
+        //Attack
+        if (isAttackPressed)
         {
-            FindObjectOfType<GameSession>().PlayerProcessDeath();
+            isAttackPressed = false;
+
+            if (!isAttacking) //Check if player is currently attacking 
+            {
+                isAttacking = true;
+
+                if (isGrounded)
+                {
+                    ChangeAnimationState(PLAYER_ATTACK);
+                }
+                else
+                {
+                    ChangeAnimationState(PLAYER_AIR_ATTACK);
+                }
+                Invoke("AttackComplete", attackDelay); //Run method after delay
+            }
         }
+    }
+
+    //Reset bool after attackdelay
+    void AttackComplete()
+    {
+        isAttacking = false;
+    }
+
+    //Animation manager
+    void ChangeAnimationState(string newAnimation)
+    {
+        if (currentAnimaton == newAnimation) return;
+
+        animator.Play(newAnimation);
+        currentAnimaton = newAnimation;
     }
 
 }
