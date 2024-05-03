@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement_Animation : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PlayerMovement_Animation : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rb;
     private Vector2 movement;
+    public ContactFilter2D groundFilter;
 
     private bool isJumpPressed;
     private bool isGrounded;
@@ -24,6 +26,7 @@ public class PlayerMovement_Animation : MonoBehaviour
     const string PLAYER_JUMP = "Player_Jump";
     const string PLAYER_ATTACK = "Player_Attack";
     const string PLAYER_AIR_ATTACK = "Player_Air_Attack";
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -31,27 +34,24 @@ public class PlayerMovement_Animation : MonoBehaviour
         groundMask = 1 << LayerMask.NameToLayer("Ground");
     }
 
-    void Update()
+    void OnMove(InputValue value)
     {
-        //Checking for inputs
-        movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        movement = value.Get<Vector2>();
+    }
 
-        //Space jump key pressed?
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            isJumpPressed = true;
-        }
+    void OnJump()
+    {
+        isJumpPressed = true;
+    }
 
-        //Attack key pressed?
-        if (Input.GetKeyDown(KeyCode.RightControl))
-        {
-            isAttackPressed = true;
-        }
+    void OnAttack()
+    {
+        isAttackPressed = true;
     }
 
     private void FixedUpdate()
     {
-        //Check if player is on the ground
+        //Check if player is on the ground (Works)
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.1f, groundMask); //See if ray hits ground below players position
         if (hit.collider != null)
         {
@@ -61,6 +61,9 @@ public class PlayerMovement_Animation : MonoBehaviour
         {
             isGrounded = false;
         }
+
+        //Check if player is on the ground (Don't work)
+        isGrounded = rb.IsTouching(groundFilter);
 
         //Check update movement based on input and assigne
         Vector2 vel = new Vector2(movement.x * moveSpeed, rb.velocity.y);
@@ -119,7 +122,7 @@ public class PlayerMovement_Animation : MonoBehaviour
     //Animation manager
     void ChangeAnimationState(string newAnimation)
     {
-        if (currentAnimaton == newAnimation) return;
+        if (currentAnimaton == newAnimation) return; 
 
         animator.Play(newAnimation);
         currentAnimaton = newAnimation;
