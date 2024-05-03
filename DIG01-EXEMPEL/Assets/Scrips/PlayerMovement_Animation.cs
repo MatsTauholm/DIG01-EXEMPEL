@@ -92,7 +92,6 @@ public class PlayerMovement_Animation : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isJumpPressed = false;
             ChangeAnimationState(PLAYER_JUMP);
-            isGrounded = false;
         }
 
         //Attack
