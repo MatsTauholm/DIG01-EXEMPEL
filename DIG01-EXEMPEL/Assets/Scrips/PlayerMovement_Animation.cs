@@ -48,26 +48,10 @@ public class PlayerMovement_Animation : MonoBehaviour
     {
         isAttackPressed = true;
     }
-
-    private void FixedUpdate()
+    private void Update()
     {
-        //Check if player is on the ground (Works)
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.1f, groundMask); //See if ray hits ground below players position
-        if (hit.collider != null)
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
-
         //Check if player is on the ground (Don't work)
         isGrounded = rb.IsTouching(groundFilter);
-
-        //Check update movement based on input and assigne
-        Vector2 vel = new Vector2(movement.x * moveSpeed, rb.velocity.y);
-        rb.velocity = vel;
 
         //Check if moveing and not attacking or falling
         if (isGrounded && !isAttacking)
@@ -82,6 +66,27 @@ public class PlayerMovement_Animation : MonoBehaviour
                 ChangeAnimationState(PLAYER_IDLE);
             }
         }
+    }
+    private void FixedUpdate()
+    {
+        //Check if player is on the ground (Works)
+        /*RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.1f, groundMask); //See if ray hits ground below players position
+        if (hit.collider != null)
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }*/
+
+
+
+        //Check update movement based on input and assigne
+        Vector2 vel = new Vector2(movement.x * moveSpeed, rb.velocity.y);
+        rb.velocity = vel;
+
+
 
         //Check if trying to jump 
         if (isJumpPressed && isGrounded)
