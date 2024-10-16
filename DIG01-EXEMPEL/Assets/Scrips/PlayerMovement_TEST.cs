@@ -3,14 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement_Animation : MonoBehaviour
+public class PlayerMovement_TEST : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 850;
     [SerializeField] private float attackDelay = 0.3f;
+
+    [SerializeField] Vector2 boxSize;
+    [SerializeField] float castDistance;
+
     private Animator animator;
     private Rigidbody2D rb;
-    private Vector2 movement;
+    Collider2D coll;
+
+    private Vector2 moveInput;
 
     private bool isJumpPressed;
     private bool isGrounded;
@@ -23,6 +29,7 @@ public class PlayerMovement_Animation : MonoBehaviour
     const string PLAYER_IDLE = "Player_Idle";
     const string PLAYER_RUN = "Player_Run";
     const string PLAYER_JUMP = "Player_Jump";
+    const string PLAYER_DAMAGE = "Player_Damage";
     const string PLAYER_ATTACK = "Player_Attack";
     const string PLAYER_AIR_ATTACK = "Player_Air_Attack";
 
@@ -30,12 +37,13 @@ public class PlayerMovement_Animation : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        coll = GetComponent<BoxCollider2D>();
         groundMask = 1 << LayerMask.NameToLayer("Ground");
     }
 
     void OnMove(InputValue value)
     {
-        movement = value.Get<Vector2>();
+        moveInput = value.Get<Vector2>();
     }
 
     void OnJump()
@@ -51,7 +59,7 @@ public class PlayerMovement_Animation : MonoBehaviour
     private void FixedUpdate()
     {
         //Check if player is on the ground (Works)
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.1f, groundMask); //See if ray hits ground below players position
+        RaycastHit2D hit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, castDistance, groundMask); //See if ray hits ground below players position
         if (hit.collider != null)
         {
             isGrounded = true;
@@ -61,18 +69,16 @@ public class PlayerMovement_Animation : MonoBehaviour
             isGrounded = false;
         }
 
-
         //Check update movement based on input and assigne
-        Vector2 vel = new Vector2(movement.x * moveSpeed, rb.velocity.y);
-        rb.velocity = vel;
+        rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
 
         //Check if moving and not attacking or falling
         if (isGrounded && !isAttacking)
         {
-            if (movement.x != 0)
+            if (moveInput.x != 0)
             {
                 ChangeAnimationState(PLAYER_RUN);
-                transform.localScale = new Vector2(Mathf.Sign(movement.x), transform.localScale.y);  //Mirror sprite if moving left
+                transform.localScale = new Vector2(Mathf.Sign(moveInput.x), transform.localScale.y);  //Mirror sprite if moving left
             }
             else
             {
@@ -80,9 +86,9 @@ public class PlayerMovement_Animation : MonoBehaviour
             }
         }
 
-        //Check if trying to jump 
+        //Check if trying to jump and on ground
         if (isJumpPressed && isGrounded)
-        {    
+        {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isJumpPressed = false;
             ChangeAnimationState(PLAYER_JUMP);
@@ -97,7 +103,7 @@ public class PlayerMovement_Animation : MonoBehaviour
             {
                 isAttacking = true;
 
-                if (isGrounded)
+                if (isGrounded) //Check which animation should be played
                 {
                     ChangeAnimationState(PLAYER_ATTACK);
                 }
@@ -108,6 +114,7 @@ public class PlayerMovement_Animation : MonoBehaviour
                 Invoke("AttackComplete", attackDelay); //Run method after delay
             }
         }
+        //transform.localScale = new Vector2(Mathf.Sign(moveInput.x), transform.localScale.y);  //Mirror sprite if moving left
     }
 
     //Reset bool after attackdelay
@@ -116,10 +123,19 @@ public class PlayerMovement_Animation : MonoBehaviour
         isAttacking = false;
     }
 
+    /*
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            ChangeAnimationState(PLAYER_DAMAGE);
+        }
+    }
+    */
     //Animation manager
     void ChangeAnimationState(string newAnimation)
     {
-        if (currentAnimaton == newAnimation) return; 
+        if (currentAnimaton == newAnimation) return;
 
         animator.Play(newAnimation);
         currentAnimaton = newAnimation;
