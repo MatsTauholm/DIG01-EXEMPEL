@@ -11,14 +11,14 @@ public class PlayerMovement_Animation : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rb;
     private Vector2 movement;
-    public ContactFilter2D groundFilter;
-
+    //bool isGrounded;
     private bool isJumpPressed;
-    private bool isGrounded;
     private bool isAttackPressed;
     private bool isAttacking;
-    private int groundMask;
     private string currentAnimaton;
+
+    Collider2D bodyColl;
+    Collider2D feetColl;
 
     //Animation States
     const string PLAYER_IDLE = "Player_Idle";
@@ -31,8 +31,20 @@ public class PlayerMovement_Animation : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        groundMask = 1 << LayerMask.NameToLayer("Ground");
+        bodyColl = GetComponent<CapsuleCollider2D>();
+        feetColl = GetComponent<BoxCollider2D>();
     }
+
+    public bool isGrounded()
+    {
+        if (feetColl.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
+            return true;
+        }
+        else
+            { return false; }
+    }
+
 
     void OnMove(InputValue value)
     {
@@ -50,11 +62,8 @@ public class PlayerMovement_Animation : MonoBehaviour
     }
     private void Update()
     {
-        //Check if player is on the ground (Don't work)
-        isGrounded = rb.IsTouching(groundFilter);
-
         //Check if moveing and not attacking or falling
-        if (isGrounded && !isAttacking)
+        if (isGrounded() && !isAttacking)
         {
             if (movement.x != 0)
             {
@@ -67,29 +76,15 @@ public class PlayerMovement_Animation : MonoBehaviour
             }
         }
     }
-    private void FixedUpdate()
+    private void LateUpdate()
     {
-        //Check if player is on the ground (Works)
-        /*RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.1f, groundMask); //See if ray hits ground below players position
-        if (hit.collider != null)
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }*/
-
-
-
+    
         //Check update movement based on input and assigne
         Vector2 vel = new Vector2(movement.x * moveSpeed, rb.velocity.y);
         rb.velocity = vel;
 
-
-
         //Check if trying to jump 
-        if (isJumpPressed && isGrounded)
+        if (isJumpPressed && isGrounded())
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isJumpPressed = false;
@@ -105,7 +100,7 @@ public class PlayerMovement_Animation : MonoBehaviour
             {
                 isAttacking = true;
 
-                if (isGrounded)
+                if (isGrounded())
                 {
                     ChangeAnimationState(PLAYER_ATTACK);
                 }
