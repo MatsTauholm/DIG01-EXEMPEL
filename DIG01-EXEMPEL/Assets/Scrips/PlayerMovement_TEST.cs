@@ -5,25 +5,23 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement_TEST : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float jumpForce = 850;
-    [SerializeField] private float attackDelay = 0.3f;
-
-    [SerializeField] Vector2 boxSize;
+    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float jumpForce = 850;
+    [SerializeField] float attackDelay = 0.3f;
     [SerializeField] float castDistance;
-
-    private Animator animator;
-    private Rigidbody2D rb;
+    [SerializeField] LayerMask ground;
+    Animator animator;
+    Rigidbody2D rb;
     Collider2D coll;
 
-    private Vector2 moveInput;
+    Vector2 moveInput;
 
-    private bool isJumpPressed;
-    private bool isGrounded;
-    private bool isAttackPressed;
-    private bool isAttacking;
-    private int groundMask;
-    private string currentAnimaton;
+    bool isJumpPressed;
+    bool isGrounded;
+    bool isAttackPressed;
+    bool isAttacking;
+    int groundMask;
+    string currentAnimaton;
 
     //Animation States
     const string PLAYER_IDLE = "Player_Idle";
@@ -38,7 +36,8 @@ public class PlayerMovement_TEST : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         coll = GetComponent<BoxCollider2D>();
-        groundMask = 1 << LayerMask.NameToLayer("Ground");
+       // groundMask = 1 << LayerMask.NameToLayer("Ground");
+
     }
 
     void OnMove(InputValue value)
@@ -58,8 +57,8 @@ public class PlayerMovement_TEST : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //Check if player is on the ground (Works)
-        RaycastHit2D hit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, castDistance, groundMask); //See if ray hits ground below players position
+        //Check if player is on the ground    
+        RaycastHit2D hit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, castDistance, ground); //See if ray hits ground below players position
         if (hit.collider != null)
         {
             isGrounded = true;
@@ -114,7 +113,6 @@ public class PlayerMovement_TEST : MonoBehaviour
                 Invoke("AttackComplete", attackDelay); //Run method after delay
             }
         }
-        //transform.localScale = new Vector2(Mathf.Sign(moveInput.x), transform.localScale.y);  //Mirror sprite if moving left
     }
 
     //Reset bool after attackdelay
@@ -122,7 +120,6 @@ public class PlayerMovement_TEST : MonoBehaviour
     {
         isAttacking = false;
     }
-
     /*
     void OnCollisionEnter2D(Collision2D collision)
     {
