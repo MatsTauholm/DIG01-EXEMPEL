@@ -10,6 +10,7 @@ public class PlayerMovement_TEST : MonoBehaviour
     [SerializeField] float attackDelay = 0.3f;
     [SerializeField] float castDistance;
     [SerializeField] LayerMask ground;
+    [SerializeField] Transform groundCheck;
     Animator animator;
     Rigidbody2D rb;
     Collider2D coll;
@@ -58,16 +59,18 @@ public class PlayerMovement_TEST : MonoBehaviour
     private void FixedUpdate()
     {
         //Check if player is on the ground    
-        RaycastHit2D hit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, castDistance, ground); //See if ray hits ground below players position
-        if (hit.collider != null)
+        //RaycastHit2D hit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, castDistance, ground); //See if ray hits ground below players position
+        if(Physics2D.OverlapCapsule(groundCheck.position, new Vector2(0.85f,0.05f), CapsuleDirection2D.Horizontal, 0 ,ground))
         {
             isGrounded = true;
+            Debug.Log("OnGround");
         }
         else
         {
             isGrounded = false;
         }
-
+        //if (hit.collider != null)
+       
         //Check update movement based on input and assigne
         rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
 
