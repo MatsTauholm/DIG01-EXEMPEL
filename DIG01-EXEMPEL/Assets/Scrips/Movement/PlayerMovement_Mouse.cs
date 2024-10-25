@@ -11,40 +11,63 @@ public class PlayerMovement_Mouse : MonoBehaviour
     [SerializeField] float moveSpeed;
     [SerializeField] float moveTime;
     int currentMovement = 1;
+    Vector2 mousePosition;
     Vector2 target;
     Vector2 velocity = Vector2.zero;
-
     Rigidbody2D rb;
-    void Start()
+
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void OnMouseMove()
-    {
-        Vector2 mouseScreenPosition = Mouse.current.position.ReadValue();
-        // Convert the screen position to a world position
-        target = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPosition.x, mouseScreenPosition.y, Camera.main.nearClipPlane));
-    }
-
     void Update()
     {
-        if (currentMovement == 1)
-        { transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime); }
+        //Get the current mouse position
+        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (currentMovement == 2)
-        { transform.position = Vector2.SmoothDamp(transform.position, target, ref velocity, moveTime * Time.deltaTime); }
+        PlayerMove();
+        PlayerRotate();
 
-
+        //Checking with numberkey is pressed
         for (int i = 0; i <= 9; i++)
         {
             KeyCode key = KeyCode.Alpha0 + i;
 
             if (Input.GetKeyDown(key))
             {
-                ChangeMovement(i);
+                ChangeMovement(i); //Change the current way of movement
             }
         }
+    }
+
+    void PlayerMove()
+    {
+        if (Input.GetMouseButtonDown(0)) //If left mousebutton is pressed
+        {
+            // Convert the screen position to a world position
+            target = mousePosition;
+        }
+
+        //Moving with Move Towards
+        if (currentMovement == 1)
+        { transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime); }
+
+        //Moving with SmoothDamp
+        if (currentMovement == 2)
+        { transform.position = Vector2.SmoothDamp(transform.position, target, ref velocity, moveTime * Time.deltaTime); }
+    }
+
+    void PlayerRotate()
+    {
+        // Calculate the direction from the object to the mouse
+        Vector2 direction = mousePosition - rb.position;
+
+        // Calculate the angle in degrees
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        // Set the rotation of the object to face the mouse
+        rb.rotation = angle;
     }
 
     void ChangeMovement(int newNumber)

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,8 +10,9 @@ public class PlayerMovement_TEST : MonoBehaviour
     [SerializeField] float jumpForce = 850;
     [SerializeField] float attackDelay = 0.3f;
     [SerializeField] float castDistance;
-    [SerializeField] LayerMask ground;
-    [SerializeField] Transform groundCheck;
+
+    [SerializeField] ContactFilter2D groundFilter;
+
     Animator animator;
     Rigidbody2D rb;
     Collider2D coll;
@@ -32,13 +34,21 @@ public class PlayerMovement_TEST : MonoBehaviour
     const string PLAYER_ATTACK = "Player_Attack";
     const string PLAYER_AIR_ATTACK = "Player_Air_Attack";
 
+    public enum PlayerState
+    {
+        Idle,
+        Running,
+        Jumping,
+        Attacking,
+    }
+    PlayerState currentState = PlayerState.Idle;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         coll = GetComponent<BoxCollider2D>();
-       // groundMask = 1 << LayerMask.NameToLayer("Ground");
-
+        
     }
 
     void OnMove(InputValue value)
@@ -59,18 +69,15 @@ public class PlayerMovement_TEST : MonoBehaviour
     private void FixedUpdate()
     {
         //Check if player is on the ground    
-        //RaycastHit2D hit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, castDistance, ground); //See if ray hits ground below players position
-        if(Physics2D.OverlapCapsule(groundCheck.position, new Vector2(0.85f,0.05f), CapsuleDirection2D.Horizontal, 0 ,ground))
+        if(rb.IsTouching(groundFilter))
         {
             isGrounded = true;
-            Debug.Log("OnGround");
         }
         else
         {
             isGrounded = false;
         }
-        //if (hit.collider != null)
-       
+        Debug.Log(isGrounded);
         //Check update movement based on input and assigne
         rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
 
@@ -79,12 +86,12 @@ public class PlayerMovement_TEST : MonoBehaviour
         {
             if (moveInput.x != 0)
             {
-                ChangeAnimationState(PLAYER_RUN);
+                
                 transform.localScale = new Vector2(Mathf.Sign(moveInput.x), transform.localScale.y);  //Mirror sprite if moving left
             }
             else
             {
-                ChangeAnimationState(PLAYER_IDLE);
+                animator.CrossFadeInFixedTime(PLAYER_IDLE, 0.2f);
             }
         }
 
@@ -93,7 +100,7 @@ public class PlayerMovement_TEST : MonoBehaviour
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isJumpPressed = false;
-            ChangeAnimationState(PLAYER_JUMP);
+            animator.CrossFadeInFixedTime(PLAYER_JUMP, 0.2f);
         }
 
         //Attack
@@ -107,11 +114,11 @@ public class PlayerMovement_TEST : MonoBehaviour
 
                 if (isGrounded) //Check which animation should be played
                 {
-                    ChangeAnimationState(PLAYER_ATTACK);
+                    animator.CrossFadeInFixedTime(PLAYER_ATTACK, 0.2f);
                 }
                 else
                 {
-                    ChangeAnimationState(PLAYER_AIR_ATTACK);
+                    animator.CrossFadeInFixedTime(PLAYER_AIR_ATTACK, 0.2f);
                 }
                 Invoke("AttackComplete", attackDelay); //Run method after delay
             }
@@ -123,22 +130,33 @@ public class PlayerMovement_TEST : MonoBehaviour
     {
         isAttacking = false;
     }
-    /*
+    
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            ChangeAnimationState(PLAYER_DAMAGE);
+            animator.CrossFadeInFixedTime(PLAYER_DAMAGE, 0.2f);
         }
-    }
-    */
-    //Animation manager
-    void ChangeAnimationState(string newAnimation)
+    }   
+    void ChangeAnimation()
     {
-        if (currentAnimaton == newAnimation) return;
-
-        animator.Play(newAnimation);
-        currentAnimaton = newAnimation;
+        switch(currentState)
+        {
+            case PlayerState.Idle:
+                if (moveInput != Vector2.zero) 
+                {
+                    animator.CrossFadeInFixedTime(PLAYER_RUN, 0.2f);
+                    currentState = PlayerState.Running;
+                }
+                break;
+            case PlayerState.Running:
+                if (moveInput == Vector2.zero)
+                {
+                    animator.CrossFadeInFixedTime(PLAYER_IDLE, 0.2f);
+                    currentState = PlayerState.Running;
+                }
+                break;
+        }
     }
 
 }

@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -575,10 +574,20 @@ MonoBehaviour:
   jumpForce: 17
   attackDelay: 0.3
   castDistance: 1
-  ground:
-    serializedVersion: 2
-    m_Bits: 128
-  groundCheck: {fileID: 1748133267}
+  groundFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 128
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
 --- !u!1001 &1989988797
 PrefabInstance:
   m_ObjectHideFlags: 0
