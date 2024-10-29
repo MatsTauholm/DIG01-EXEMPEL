@@ -91,7 +91,7 @@ public class PlayerMovement_TEST : MonoBehaviour
             }
             else
             {
-                animator.CrossFadeInFixedTime(PLAYER_IDLE, 0.2f);
+              //  animator.CrossFadeInFixedTime(PLAYER_IDLE, 0.2f);
             }
         }
 
@@ -100,7 +100,7 @@ public class PlayerMovement_TEST : MonoBehaviour
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             isJumpPressed = false;
-            animator.CrossFadeInFixedTime(PLAYER_JUMP, 0.2f);
+            //animator.CrossFadeInFixedTime(PLAYER_JUMP, 0.2f);
         }
 
         //Attack
@@ -114,15 +114,16 @@ public class PlayerMovement_TEST : MonoBehaviour
 
                 if (isGrounded) //Check which animation should be played
                 {
-                    animator.CrossFadeInFixedTime(PLAYER_ATTACK, 0.2f);
+                    //animator.CrossFadeInFixedTime(PLAYER_ATTACK, 0.2f);
                 }
                 else
                 {
-                    animator.CrossFadeInFixedTime(PLAYER_AIR_ATTACK, 0.2f);
+                   // animator.CrossFadeInFixedTime(PLAYER_AIR_ATTACK, 0.2f);
                 }
                 Invoke("AttackComplete", attackDelay); //Run method after delay
             }
         }
+        ChangeAnimation();
     }
 
     //Reset bool after attackdelay
@@ -135,24 +136,41 @@ public class PlayerMovement_TEST : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            animator.CrossFadeInFixedTime(PLAYER_DAMAGE, 0.2f);
+          //  animator.CrossFadeInFixedTime(PLAYER_DAMAGE, 0.2f);
         }
-    }   
+    }  
+    
     void ChangeAnimation()
     {
         switch(currentState)
         {
-            case PlayerState.Idle:
-                if (moveInput != Vector2.zero) 
+            case PlayerState.Attacking:
+                if(isGrounded == true)
                 {
-                    animator.CrossFadeInFixedTime(PLAYER_RUN, 0.2f);
-                    currentState = PlayerState.Running;
+                    animator.Play(PLAYER_ATTACK);
+                }
+                else
+                {
+                    animator.Play(PLAYER_AIR_ATTACK);
+                }
+            break;
+
+            case PlayerState.Jumping:
+                {
+
                 }
                 break;
             case PlayerState.Running:
                 if (moveInput == Vector2.zero)
                 {
-                    animator.CrossFadeInFixedTime(PLAYER_IDLE, 0.2f);
+                    animator.CrossFadeInFixedTime(PLAYER_IDLE, 0f);
+                    currentState = PlayerState.Idle;
+                }
+                break;
+            case PlayerState.Idle:
+                if (moveInput != Vector2.zero)
+                {
+                    animator.CrossFadeInFixedTime(PLAYER_RUN, 0f);
                     currentState = PlayerState.Running;
                 }
                 break;
