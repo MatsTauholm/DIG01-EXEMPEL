@@ -10,6 +10,8 @@ public class PlayerMovement_Mouse : MonoBehaviour
 {
     [SerializeField] float moveSpeed;
     [SerializeField] float moveTime;
+    [SerializeField] GameObject infoText;
+
     int currentMovement = 1;
     Vector2 mousePosition;
     Vector2 target;
@@ -29,7 +31,7 @@ public class PlayerMovement_Mouse : MonoBehaviour
         PlayerMove();
         PlayerRotate();
 
-        //Checking with numberkey is pressed
+        //Checking whitch numberkey is pressed
         for (int i = 0; i <= 9; i++)
         {
             KeyCode key = KeyCode.Alpha0 + i;
@@ -51,11 +53,18 @@ public class PlayerMovement_Mouse : MonoBehaviour
 
         //Moving with Move Towards
         if (currentMovement == 1)
-        { transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime); }
+        { 
+            transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
+            infoText.GetComponent<ChangeInfoText>().UpdateText("Vector2 MoveTowards");
+        }
 
         //Moving with SmoothDamp
         if (currentMovement == 2)
-        { transform.position = Vector2.SmoothDamp(transform.position, target, ref velocity, moveTime * Time.deltaTime); }
+        {
+            transform.position = Vector2.SmoothDamp(transform.position, target, ref velocity, moveTime * Time.deltaTime);
+            infoText.GetComponent<ChangeInfoText>().UpdateText("Vector2 SmoothDamp");
+        }
+        
     }
 
     void PlayerRotate()

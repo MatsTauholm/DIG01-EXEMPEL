@@ -5,9 +5,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement_EX : MonoBehaviour
+public class PlayerMovement_Keyboard : MonoBehaviour
 {
     [SerializeField] float moveSpeed;
+    [SerializeField] GameObject infoText;
     int currentMovement = 1;
     Vector2 moveInput;
 
@@ -25,22 +26,32 @@ public class PlayerMovement_EX : MonoBehaviour
     void FixedUpdate()
     {
         if (currentMovement == 2) //AddForce movement
-        { rb.AddForce(moveInput * moveSpeed); }
+        { 
+            rb.AddForce(moveInput * moveSpeed);
+            infoText.GetComponent<ChangeInfoText>().UpdateText("Rigidbody AddForce");
+        }
 
         if (currentMovement == 3) //MovePosition movement
-        { rb.MovePosition(rb.position + (moveInput * moveSpeed * Time.deltaTime)); }
+        { 
+            rb.MovePosition(rb.position + (moveInput * moveSpeed * Time.deltaTime));
+            infoText.GetComponent<ChangeInfoText>().UpdateText("Rigidbody MovePosition");
+        }
 
     }
 
     void Update()
     {
-
         if (currentMovement == 1) //Transform movement
-        { transform.Translate(moveInput * moveSpeed * Time.deltaTime); }
+        { 
+            transform.Translate(moveInput * moveSpeed * Time.deltaTime);
+            infoText.GetComponent<ChangeInfoText>().UpdateText("Transfrom Translate");
+        }
 
         if (currentMovement == 4) //Velocity movement
-        { rb.velocity = moveInput * moveSpeed; }
-
+        { 
+            rb.velocity = moveInput * moveSpeed;
+            infoText.GetComponent<ChangeInfoText>().UpdateText("Rigidbody Velocity");
+        }
 
         for (int i = 0; i <= 9; i++)
         {
