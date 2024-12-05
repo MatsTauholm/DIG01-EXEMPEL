@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     private Rigidbody2D rb;
     private BoxCollider2D coll;
-    private bool isGrounded => rb.IsTouching(groundFilter);
+    public static bool isGrounded; 
     private bool shouldJump;
 
     void Start()
@@ -43,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        isGrounded = rb.IsTouching(groundFilter);
+
         Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
         rb.velocity = playerVelocity;
 
