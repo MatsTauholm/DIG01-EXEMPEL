@@ -319,17 +319,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6114103726749625866, guid: ee9c588ea3215db4fa29f09604678754, type: 3}
-      propertyPath: jumpImpulse
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 9033252953569890042, guid: ee9c588ea3215db4fa29f09604678754, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.086437315
+      value: -1.17
       objectReference: {fileID: 0}
     - target: {fileID: 9033252953569890042, guid: ee9c588ea3215db4fa29f09604678754, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.5
+      value: -2.94
       objectReference: {fileID: 0}
     - target: {fileID: 9033252953569890042, guid: ee9c588ea3215db4fa29f09604678754, type: 3}
       propertyPath: m_LocalPosition.z
@@ -363,48 +359,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2477140254183280012, guid: ee9c588ea3215db4fa29f09604678754, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5535971030466303019, guid: ee9c588ea3215db4fa29f09604678754, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 436916684}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee9c588ea3215db4fa29f09604678754, type: 3}
---- !u!1 &436916683 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5535971030466303019, guid: ee9c588ea3215db4fa29f09604678754, type: 3}
-  m_PrefabInstance: {fileID: 436916682}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &436916684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 436916683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dab5e25be1e7890418b2d4d97ef75f5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpImpulse: 5
-  groundFilter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
