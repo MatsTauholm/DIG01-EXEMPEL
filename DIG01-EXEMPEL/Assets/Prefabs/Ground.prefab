@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4155590551526091102}
   - component: {fileID: 2145091519992782948}
   - component: {fileID: 3381378302112672124}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.1, y: -4.5, z: 0}
-  m_LocalScale: {x: 19.260712, y: 1, z: 1}
+  m_LocalScale: {x: 20, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -94,7 +94,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 5156805242953108296}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1dcbc9309b247d6428764d5b610f4a24, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

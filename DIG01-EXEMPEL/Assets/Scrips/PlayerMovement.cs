@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     private Rigidbody2D rb;
     private BoxCollider2D coll;
-    private bool isGrounded => rb.IsTouching(groundFilter);
+    public static bool isGrounded; 
     private bool shouldJump;
 
     void Start()
@@ -36,16 +36,18 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
         shouldJump = true;
     }
-    private void Update()
-    {
-        //isGrounded = rb.IsTouching(groundFilter);  
-    }
+
 
     void FixedUpdate()
     {
+        //Groundcheck
+        isGrounded = rb.IsTouching(groundFilter);
+
+        //Player Movement
         Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
         rb.velocity = playerVelocity;
 
+        //Player Jump
         if (isGrounded && shouldJump)
         {
             rb.AddForce(Vector2.up * jumpImpulse, ForceMode2D.Impulse);
