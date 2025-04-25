@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MovePatrole : MonoBehaviour
 {
-
     public Transform pointA;
     public Transform pointB;
     public float moveSpeed = 2f;
