@@ -41,7 +41,7 @@ public class PlayerSpecialAttack : MonoBehaviour
             float rotationAmount = 360f * (Time.deltaTime / spinDuration);
             transform.Rotate(0, 0, rotationAmount);
             elapsed += Time.deltaTime;
-            yield return null;
+            yield return null; //Pause coroutine until next frame
         }
 
         //Fall fast to the ground
@@ -51,7 +51,7 @@ public class PlayerSpecialAttack : MonoBehaviour
         // Wait until the player hits the ground
         while (!PlayerMovement.isGrounded)
         {
-            yield return null;
+            yield return null; //Pause coroutine until next frame
         }
 
         // Step 4: Damage all enemies in the area
