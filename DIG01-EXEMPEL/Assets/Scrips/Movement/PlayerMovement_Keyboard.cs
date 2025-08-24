@@ -49,7 +49,7 @@ public class PlayerMovement_Keyboard : MonoBehaviour
 
         if (currentMovement == 4) //Velocity movement
         { 
-            rb.velocity = moveInput * moveSpeed;
+            rb.linearVelocity = moveInput * moveSpeed;
             infoText.GetComponent<ChangeInfoText>().UpdateText("Rigidbody Velocity");
         }
 

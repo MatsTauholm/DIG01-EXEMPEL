@@ -79,7 +79,7 @@ public class PlayerMovement_TEST : MonoBehaviour
         }
         Debug.Log(isGrounded);
         //Check update movement based on input and assigne
-        rb.velocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
+        rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
 
         //Check if moving and not attacking or falling
         if (isGrounded && !isAttacking)

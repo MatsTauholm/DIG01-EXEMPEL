@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerSpecialAttack : MonoBehaviour
 {
-    public float spinDuration = 1f; // Time taken for a full 360° spin
+    public float spinDuration = 1f; // Time taken for a full 360ï¿½ spin
     public float fallSpeed = 20f;   // Speed of the fast fall
     public float damageRadius = 5f; // Radius of the area damage
     public int damageAmount = 50;   // Damage dealt to each enemy
@@ -31,7 +31,7 @@ public class PlayerSpecialAttack : MonoBehaviour
         isPerformingMove = true;
 
         //Stop the player in midair
-        rb.velocity = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
         rb.gravityScale = 0;
 
         //Spin character 360 degrees
@@ -46,7 +46,7 @@ public class PlayerSpecialAttack : MonoBehaviour
 
         //Fall fast to the ground
         rb.gravityScale = 1; // Reset gravity to default
-        rb.velocity = new Vector2(0, -fallSpeed);
+        rb.linearVelocity = new Vector2(0, -fallSpeed);
 
         // Wait until the player hits the ground
         while (!PlayerMovement.isGrounded)

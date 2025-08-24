@@ -59,8 +59,8 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = rb.IsTouching(groundFilter);
 
         //Player Movement
-        Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, rb.velocity.y);
-        rb.velocity = playerVelocity;
+        Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
+        rb.linearVelocity = playerVelocity;
        
         //Player Jump
         if (isGrounded && shouldJump)
