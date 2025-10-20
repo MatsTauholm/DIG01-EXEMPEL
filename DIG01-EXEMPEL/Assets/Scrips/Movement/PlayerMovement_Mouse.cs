@@ -8,15 +8,15 @@ using static UnityEngine.GraphicsBuffer;
 
 public class PlayerMovement_Mouse : MonoBehaviour
 {
-    [SerializeField] float moveSpeed;
-    [SerializeField] float moveTime;
-    [SerializeField] GameObject infoText;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float moveTime;
+    [SerializeField] private GameObject infoText;
 
-    int currentMovement = 1;
-    Vector2 mousePosition;
-    Vector2 target;
-    Vector2 velocity = Vector2.zero;
-    Rigidbody2D rb;
+    private int currentMovement = 1;
+    private Vector2 mousePosition;
+    private Vector2 targetPosition;
+    private Vector2 velocity = Vector2.zero;
+    private Rigidbody2D rb;
 
     void Awake()
     {
@@ -48,20 +48,20 @@ public class PlayerMovement_Mouse : MonoBehaviour
         if (Input.GetMouseButtonDown(0)) //If left mousebutton is pressed
         {
             // Convert the screen position to a world position
-            target = mousePosition;
+            targetPosition = mousePosition;
         }
 
         //Moving with Move Towards
         if (currentMovement == 1)
         { 
-            transform.position = Vector2.MoveTowards(transform.position, target, moveSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
             infoText.GetComponent<ChangeInfoText>().UpdateText("Vector2 MoveTowards");
         }
 
         //Moving with SmoothDamp
         if (currentMovement == 2)
         {
-            transform.position = Vector2.SmoothDamp(transform.position, target, ref velocity, moveTime * Time.deltaTime);
+            transform.position = Vector2.SmoothDamp(transform.position, targetPosition, ref velocity, moveTime * Time.deltaTime);
             infoText.GetComponent<ChangeInfoText>().UpdateText("Vector2 SmoothDamp");
         }
         
@@ -82,6 +82,5 @@ public class PlayerMovement_Mouse : MonoBehaviour
     void ChangeMovement(int newNumber)
     {
         currentMovement = newNumber;
-        Debug.Log(currentMovement);
     }
 }
