@@ -19,7 +19,7 @@
                     "name": "Attack",
                     "type": "Button",
                     "id": "c6dd3041-9906-4a14-8411-ca2d729315f3",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -28,16 +28,16 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "630f9438-c9cb-4fce-a210-53ac2b6c039c",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MouseMove",
+                    "name": "Look",
                     "type": "Button",
-                    "id": "5a233f3f-f922-4b01-b592-fc79a060748b",
-                    "expectedControlType": "Button",
+                    "id": "e2e8357c-1932-4e2a-86da-c4e32266334f",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -233,23 +233,12 @@
                 },
                 {
                     "name": "",
-                    "id": "f62cfac4-53a1-43e7-9f54-db189c2fde83",
-                    "path": "<Keyboard>/space",
+                    "id": "64843376-2f6a-4f0b-a21d-6a18aa7e3fc2",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "11510ef4-7dec-4452-8a9a-b97b57b5a64d",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "MouseMove",
+                    "groups": ";Gamepad",
+                    "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

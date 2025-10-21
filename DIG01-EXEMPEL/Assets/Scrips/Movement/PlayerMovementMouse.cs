@@ -6,60 +6,47 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.GraphicsBuffer;
 
-public class PlayerMovement_Mouse : MonoBehaviour
+public class PlayerMovementMouse : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float moveTime;
     [SerializeField] private GameObject infoText;
 
-    private int currentMovement = 1;
     private Vector2 mousePosition;
     private Vector2 targetPosition;
     private Vector2 velocity = Vector2.zero;
     private Rigidbody2D rb;
 
+    private MovementSystemManager movementSystemManager;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        movementSystemManager = FindFirstObjectByType<MovementSystemManager>();
     }
 
     void Update()
     {
-        //Get the current mouse position
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
         PlayerMove();
-        PlayerRotate();
-
-        //Checking whitch numberkey is pressed
-        for (int i = 0; i <= 9; i++)
-        {
-            KeyCode key = KeyCode.Alpha0 + i;
-
-            if (Input.GetKeyDown(key))
-            {
-                ChangeMovement(i); //Change the current way of movement
-            }
-        }
+        PlayerRotate();   
     }
 
-    void PlayerMove()
+    private void PlayerMove()
     {
         if (Input.GetMouseButtonDown(0)) //If left mousebutton is pressed
         {
-            // Convert the screen position to a world position
             targetPosition = mousePosition;
         }
 
         //Moving with Move Towards
-        if (currentMovement == 1)
+        if (movementSystemManager.currentMovement == 1)
         { 
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
             infoText.GetComponent<ChangeInfoText>().UpdateText("Vector2 MoveTowards");
         }
 
         //Moving with SmoothDamp
-        if (currentMovement == 2)
+        if (movementSystemManager.currentMovement == 2)
         {
             transform.position = Vector2.SmoothDamp(transform.position, targetPosition, ref velocity, moveTime * Time.deltaTime);
             infoText.GetComponent<ChangeInfoText>().UpdateText("Vector2 SmoothDamp");
@@ -67,8 +54,11 @@ public class PlayerMovement_Mouse : MonoBehaviour
         
     }
 
-    void PlayerRotate()
+    private void PlayerRotate()
     {
+        //Get the current mouse position
+        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
         // Calculate the direction from the object to the mouse
         Vector2 direction = mousePosition - rb.position;
 
@@ -77,10 +67,5 @@ public class PlayerMovement_Mouse : MonoBehaviour
 
         // Set the rotation of the object to face the mouse
         rb.rotation = angle;
-    }
-
-    void ChangeMovement(int newNumber)
-    {
-        currentMovement = newNumber;
     }
 }
