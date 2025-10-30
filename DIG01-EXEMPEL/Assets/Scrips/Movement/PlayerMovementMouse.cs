@@ -10,7 +10,6 @@ public class PlayerMovementMouse : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float moveTime;
-    [SerializeField] private GameObject infoText;
 
     private Vector2 mousePosition;
     private Vector2 targetPosition;
@@ -25,31 +24,29 @@ public class PlayerMovementMouse : MonoBehaviour
         movementSystemManager = FindFirstObjectByType<MovementSystemManager>();
     }
 
+    void OnClick(InputValue button)
+    {
+        targetPosition = mousePosition;
+    }
+
     void Update()
     {
+        PlayerRotate();
         PlayerMove();
-        PlayerRotate();   
     }
 
     private void PlayerMove()
-    {
-        if (Input.GetMouseButtonDown(0)) //If left mousebutton is pressed
-        {
-            targetPosition = mousePosition;
-        }
-
+    {        
         //Moving with Move Towards
         if (movementSystemManager.currentMovement == 1)
         { 
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-            infoText.GetComponent<ChangeInfoText>().UpdateText("Vector2 MoveTowards");
         }
 
         //Moving with SmoothDamp
         if (movementSystemManager.currentMovement == 2)
         {
             transform.position = Vector2.SmoothDamp(transform.position, targetPosition, ref velocity, moveTime * Time.deltaTime);
-            infoText.GetComponent<ChangeInfoText>().UpdateText("Vector2 SmoothDamp");
         }
         
     }

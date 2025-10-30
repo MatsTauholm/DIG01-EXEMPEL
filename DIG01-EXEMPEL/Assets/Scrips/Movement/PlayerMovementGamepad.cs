@@ -8,10 +8,6 @@ public class PlayerMovementGamepad : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotationSpeed = 720f;
 
-    [Header("Input References")]
-    public InputActionReference moveAction; // Reference to Move action from PlayerInput
-    public InputActionReference aimAction;  // Reference to Aim action from PlayerInput
-
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private Vector2 aimInput;
@@ -21,29 +17,22 @@ public class PlayerMovementGamepad : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void OnEnable()
+    void OnMove(InputValue value)
     {
-        if (moveAction != null) moveAction.action.Enable();
-        if (aimAction != null) aimAction.action.Enable();
+        moveInput = value.Get<Vector2>();
     }
 
-    private void OnDisable()
+    void OnLook(InputValue value)
     {
-        if (moveAction != null) moveAction.action.Disable();
-        if (aimAction != null) aimAction.action.Disable();
+        aimInput = value.Get<Vector2>();
     }
 
     private void FixedUpdate()
     {
-        if (moveAction != null)
-            moveInput = moveAction.action.ReadValue<Vector2>();
-        if (aimAction != null)
-            aimInput = aimAction.action.ReadValue<Vector2>();
-
-        // --- Movement ---
+        //Movement
         rb.linearVelocity = moveInput * moveSpeed;
 
-        // --- Rotation (Aim) ---
+        //Rotation (Aim)
         if (aimInput.sqrMagnitude > 0.1f)
         {
             float targetAngle = Mathf.Atan2(aimInput.y, aimInput.x) * Mathf.Rad2Deg - 90f;
