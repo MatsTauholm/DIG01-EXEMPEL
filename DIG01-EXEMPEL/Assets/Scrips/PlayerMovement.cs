@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (coll.IsTouchingLayers(LayerMask.GetMask("Hazards")))
         {
-            FindObjectOfType<GameSession>().PlayerProcessDeath();
+            FindFirstObjectByType<GameSession>().PlayerProcessDeath();
         }
     }
 

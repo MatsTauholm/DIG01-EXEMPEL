@@ -10,7 +10,7 @@ public class ChangeLevel : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            FindObjectOfType<ScenePersist>().ResetScenePersist();
+            FindFirstObjectByType<ScenePersist>().ResetScenePersist();
             SceneManager.LoadScene(goToLevel);
         }
     }
