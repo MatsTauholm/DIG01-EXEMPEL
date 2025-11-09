@@ -505,9 +505,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 331cde58f4d221b41936c58d4a3a5eec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovementSystemManager
-  currentMovement: 1
   infoTextKeyBoard: {fileID: 507940584}
   infoTextMouse: {fileID: 1229017556}
+  currentMovement: 1
 --- !u!1 &1229017556
 GameObject:
   m_ObjectHideFlags: 0
