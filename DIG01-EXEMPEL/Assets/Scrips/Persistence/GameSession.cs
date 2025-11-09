@@ -6,13 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class GameSession : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI livesText;
     public int score = 0;
     public int playerLives = 3;
-    [SerializeField] TextMeshProUGUI scoreText;
-    [SerializeField] TextMeshProUGUI livesText;
+
     void Awake()
     {
-        int numGameSessions = FindObjectsOfType<GameSession>().Length;
+        int numGameSessions = FindObjectsByType<GameSession>(FindObjectsSortMode.None).Length;
         if (numGameSessions > 1)
         {
             Destroy(gameObject);
@@ -50,9 +51,9 @@ public class GameSession : MonoBehaviour
         }
     }
 
-    void ResetGameSession()
+    public void ResetGameSession()
     {
-        FindObjectOfType<ScenePersist>().ResetScenePersist();
+        FindAnyObjectByType<ScenePersist>().ResetScenePersist();
         SceneManager.LoadScene(0);
         Destroy(gameObject);
     }

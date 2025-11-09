@@ -10,7 +10,7 @@ public class CoinPickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            FindObjectOfType<GameSession>().SetScore(coinScore);
+            FindFirstObjectByType<GameSession>().SetScore(coinScore);
             Destroy(gameObject);
         }
     }
