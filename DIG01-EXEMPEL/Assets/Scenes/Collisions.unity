@@ -423,6 +423,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4814158600126319484, guid: c380f6c29a1004a40a646ccc2ca1d4e6, type: 3}
+      propertyPath: moveSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7152434373149108489, guid: c380f6c29a1004a40a646ccc2ca1d4e6, type: 3}
       propertyPath: hitLayers.m_Bits
       value: 0
@@ -485,6 +489,10 @@ PrefabInstance:
     - target: {fileID: 1633752880591813951, guid: f7a3d03d4712d704096ed32a2ede19d5, type: 3}
       propertyPath: m_Name
       value: Bomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 2386363383736886921, guid: f7a3d03d4712d704096ed32a2ede19d5, type: 3}
+      propertyPath: explosionRadius
+      value: 5.53
       objectReference: {fileID: 0}
     - target: {fileID: 6327237306389891917, guid: f7a3d03d4712d704096ed32a2ede19d5, type: 3}
       propertyPath: m_ActionEvents.Array.size
