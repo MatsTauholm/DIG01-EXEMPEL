@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
-    [SerializeField] LayerMask enemyLayer;
+    [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private float explosionRadius = 5f;
 
     void Update()
