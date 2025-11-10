@@ -80,8 +80,8 @@ public class PlayerMovement_Animation : MonoBehaviour
     {
     
         //Check update movement based on input and assigne
-        Vector2 vel = new Vector2(movement.x * moveSpeed, rb.velocity.y);
-        rb.velocity = vel;
+        Vector2 vel = new Vector2(movement.x * moveSpeed, rb.linearVelocity.y);
+        rb.linearVelocity = vel;
 
         //Check if trying to jump 
         if (isJumpPressed && isGrounded())
