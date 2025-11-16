@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1907320706202359928, guid: ee9c588ea3215db4fa29f09604678754, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: Keyboard
+      objectReference: {fileID: 0}
     - target: {fileID: 2740503567310785759, guid: ee9c588ea3215db4fa29f09604678754, type: 3}
       propertyPath: m_Color.b
       value: 1
