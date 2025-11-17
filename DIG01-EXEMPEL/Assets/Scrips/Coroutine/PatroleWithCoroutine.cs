@@ -24,9 +24,9 @@ public class PatroleWithCoroutine : MonoBehaviour
         while (true) 
         {
             // Move towards target until close enough
-            while (Vector3.Distance(transform.position, target) > 0.05f)
+            while (Vector2.Distance(transform.position, target) > 0.05f)
             {
-                transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime); //Start moving
+                transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime); //Start moving
                 yield return null; // Wait for next frame
             }
 

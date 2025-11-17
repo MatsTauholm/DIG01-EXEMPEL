@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1710651137830904674, guid: 8e64853ad09be704b87af2968ef7add1, type: 3}
       propertyPath: m_Name
-      value: Enemy With Advance Coroutine Variant Variant
+      value: Enemy With Advance Coroutine Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3369321932431177096, guid: 8e64853ad09be704b87af2968ef7add1, type: 3}
       propertyPath: m_Color.b

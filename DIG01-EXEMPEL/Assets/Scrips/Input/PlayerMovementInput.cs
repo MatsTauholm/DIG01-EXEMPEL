@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class PlayerMovementInput : MonoBehaviour
 {
@@ -10,34 +11,50 @@ public class PlayerMovementInput : MonoBehaviour
     private Vector2 moveInput;
     private Rigidbody2D rb;
     private bool isFiring;
-
+    
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void OnMove(InputValue value)
+    public void OnMove(InputAction.CallbackContext ctx)
     {
-        moveInput = value.Get<Vector2>();
+        moveInput = ctx.ReadValue<Vector2>();
+
     }
 
-    void OnClickStarted(InputAction.CallbackContext ctx)
+    public void OnClick(InputAction.CallbackContext ctx)
     {
-        Debug.Log("Button pressed");
+        if (ctx.performed)
+        {
             isFiring = true;
-        
+        }
+        else if (ctx.canceled)
+        {
+            isFiring = false;
+        }
     }
 
-    void OnClickCanceled(InputAction.CallbackContext ctx)
+    public void OnHold (InputAction.CallbackContext ctx)
     {
-        Debug.Log("Button released");
-        isFiring = false;
+        if (ctx.performed)
+        {
+            Debug.Log("Holding!");
+        }
     }
+
+    public void OnDoubleTap(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            Debug.Log("Double Tapped!");
+        }
+    }
+
     void Update()
     {
         rb.linearVelocity = moveInput * moveSpeed;
         Shoot();
-        Debug.Log(isFiring);
     }
 
     private void Shoot()

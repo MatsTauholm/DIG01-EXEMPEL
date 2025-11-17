@@ -26,6 +26,7 @@ public class PlayerMovementMouse : MonoBehaviour
 
     void OnClick(InputValue button)
     {
+        Debug.Log("Mouse Clicked");
         targetPosition = mousePosition;
     }
 

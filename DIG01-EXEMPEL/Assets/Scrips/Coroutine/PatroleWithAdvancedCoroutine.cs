@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PatroleWithAdvancedCoroutine : MonoBehaviour
+public class MovePatrole : MonoBehaviour
 {
     public Transform pointA;
     public Transform pointB;
