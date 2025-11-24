@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovementAnimations : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float jumpImpulse = 5f;
@@ -14,18 +14,13 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D coll;
     public static bool isGrounded; 
     private bool shouldJump;
-    Animator ani;
+    private Animator ani;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         ani = GetComponent<Animator>();
-    }
-
-    public void SetStartPos(float newPosX, float newPosY)
-    {
-        transform.position = new Vector3(newPosX,newPosY);
     }
 
     void OnMove(InputValue value)
@@ -58,6 +53,16 @@ public class PlayerMovement : MonoBehaviour
         //Groundcheck
         isGrounded = rb.IsTouching(groundFilter);
 
+        //Jump Animation
+        if (isGrounded)
+        {
+            ani.SetBool("isJumping", false);
+        }
+        else
+        {
+            ani.SetBool("isJumping", true);
+        }
+
         //Player Movement
         Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
         rb.linearVelocity = playerVelocity;
@@ -74,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (coll.IsTouchingLayers(LayerMask.GetMask("Hazards")))
         {
+            ani.SetBool("isDead", true);
             FindFirstObjectByType<GameSession>().PlayerProcessDeath();
         }
     }
