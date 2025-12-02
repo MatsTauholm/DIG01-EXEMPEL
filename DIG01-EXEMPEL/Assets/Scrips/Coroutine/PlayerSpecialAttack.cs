@@ -49,7 +49,7 @@ public class PlayerSpecialAttack : MonoBehaviour
         rb.linearVelocity = new Vector2(0, -fallSpeed);
 
         // Wait until the player hits the ground
-        while (!PlayerMovement.isGrounded)
+        //while (!PlayerMovement.isGrounded)
         {
             yield return null; //Pause coroutine until next frame
         }
