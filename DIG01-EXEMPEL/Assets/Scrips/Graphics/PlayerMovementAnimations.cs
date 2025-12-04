@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class PlayerMovementAnimations : MonoBehaviour
     private BoxCollider2D coll;
     public static bool isGrounded; 
     private bool shouldJump;
+    private bool isDead;
     private Animator ani;
 
     void Start()
@@ -25,22 +27,35 @@ public class PlayerMovementAnimations : MonoBehaviour
 
     void OnMove(InputValue value)
     {
-        moveInput = value.Get<Vector2>();
+        if (!isDead)
+        {
+            moveInput = value.Get<Vector2>();
+        }
     }
 
     void OnJump()
     {
-        if (isGrounded)
-        shouldJump = true;
+        if (isGrounded && !isDead)
+        {
+            shouldJump = true;
+        }
+        
     }
 
     void Update()
     {
+        Move();
+    }
+
+    private void Move()
+    {
+        rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
+
+        //Running Animation
         if (moveInput.x != 0)
         {
             ani.SetBool("isRunning", true);
-            //Flip sprite if moving left
-            transform.localScale = new Vector2(Mathf.Sign(moveInput.x), transform.localScale.y);
+            transform.localScale = new Vector2(Mathf.Sign(moveInput.x), transform.localScale.y); //Flip sprite if moving left
         }
         else
         {
@@ -52,6 +67,17 @@ public class PlayerMovementAnimations : MonoBehaviour
     {
         //Groundcheck
         isGrounded = rb.IsTouching(groundFilter);
+        Jump();           
+    }
+
+    private void Jump()
+    {
+        //Player Jump
+        if (shouldJump)
+        {
+            rb.AddForce(Vector2.up * jumpImpulse, ForceMode2D.Impulse);
+            shouldJump = false;
+        }
 
         //Jump Animation
         if (isGrounded)
@@ -62,25 +88,16 @@ public class PlayerMovementAnimations : MonoBehaviour
         {
             ani.SetBool("isJumping", true);
         }
-
-        //Player Movement
-        Vector2 playerVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
-        rb.linearVelocity = playerVelocity;
-       
-        //Player Jump
-        if (isGrounded && shouldJump)
-        {
-            rb.AddForce(Vector2.up * jumpImpulse, ForceMode2D.Impulse);
-            shouldJump = false;
-        }         
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (coll.IsTouchingLayers(LayerMask.GetMask("Hazards")))
         {
-            ani.SetBool("isDead", true);
-            FindFirstObjectByType<GameSession>().PlayerProcessDeath();
+            isDead = true;
+            ani.SetTrigger("Death");
+            coll.enabled = false;
+            rb.linearVelocity = new Vector2(20 * transform.localScale.x, 20);
         }
     }
 
