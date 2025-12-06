@@ -39,7 +39,6 @@ public class PlayerMovementAnimations : MonoBehaviour
         {
             shouldJump = true;
         }
-        
     }
 
     void Update()
@@ -50,7 +49,7 @@ public class PlayerMovementAnimations : MonoBehaviour
     private void Move()
     {
         rb.linearVelocity = new Vector2(moveInput.x * moveSpeed, rb.linearVelocity.y);
-
+        
         //Running Animation
         if (moveInput.x != 0)
         {
@@ -67,6 +66,14 @@ public class PlayerMovementAnimations : MonoBehaviour
     {
         //Groundcheck
         isGrounded = rb.IsTouching(groundFilter);
+        ani.SetBool("isGrounded", isGrounded);
+
+        //Jump Animation
+        if (!isGrounded)
+        {
+            ani.SetTrigger("Jumping");
+        }
+
         Jump();           
     }
 
@@ -77,17 +84,7 @@ public class PlayerMovementAnimations : MonoBehaviour
         {
             rb.AddForce(Vector2.up * jumpImpulse, ForceMode2D.Impulse);
             shouldJump = false;
-        }
-
-        //Jump Animation
-        if (isGrounded)
-        {
-            ani.SetBool("isJumping", false);
-        }
-        else
-        {
-            ani.SetBool("isJumping", true);
-        }
+        }  
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -95,9 +92,9 @@ public class PlayerMovementAnimations : MonoBehaviour
         if (coll.IsTouchingLayers(LayerMask.GetMask("Hazards")))
         {
             isDead = true;
-            ani.SetTrigger("Death");
-            coll.enabled = false;
-            rb.linearVelocity = new Vector2(20 * transform.localScale.x, 20);
+            ani.SetBool("isDead", true);
+            //coll.enabled = false;
+            //rb.linearVelocity = new Vector2(20 * transform.localScale.x, 20);
         }
     }
 
