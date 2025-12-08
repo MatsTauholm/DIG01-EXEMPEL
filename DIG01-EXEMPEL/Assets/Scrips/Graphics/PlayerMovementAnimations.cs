@@ -69,7 +69,7 @@ public class PlayerMovementAnimations : MonoBehaviour
         ani.SetBool("isGrounded", isGrounded);
 
         //Jump Animation
-        if (!isGrounded)
+        if (!isGrounded && !isDead)
         {
             ani.SetTrigger("Jumping");
         }
@@ -93,8 +93,8 @@ public class PlayerMovementAnimations : MonoBehaviour
         {
             isDead = true;
             ani.SetBool("isDead", true);
-            //coll.enabled = false;
-            //rb.linearVelocity = new Vector2(20 * transform.localScale.x, 20);
+            coll.enabled = false;
+            rb.linearVelocity = new Vector2(20 * transform.localScale.x, 20);
         }
     }
 
