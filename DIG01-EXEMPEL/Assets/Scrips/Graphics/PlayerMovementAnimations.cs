@@ -92,9 +92,15 @@ public class PlayerMovementAnimations : MonoBehaviour
         if (coll.IsTouchingLayers(LayerMask.GetMask("Hazards")))
         {
             isDead = true;
+<<<<<<< Updated upstream
             ani.SetBool("isDead", true);
             coll.enabled = false;
             rb.linearVelocity = new Vector2(20 * transform.localScale.x, 20);
+=======
+            ani.SetTrigger("Dead");
+            //coll.enabled = false;
+            //rb.linearVelocity = new Vector2(20 * transform.localScale.x, 20);
+>>>>>>> Stashed changes
         }
     }
 
