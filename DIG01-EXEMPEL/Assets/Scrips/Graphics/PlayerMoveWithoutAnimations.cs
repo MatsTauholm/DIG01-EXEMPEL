@@ -37,7 +37,7 @@ public class PlayerMoveWithoutAnimations : MonoBehaviour
         if (moveInput.x != 0)
         {
             //Flip sprite if moving left
-            transform.localScale = new Vector2(Mathf.Sign(moveInput.x), transform.localScale.y);
+            //transform.localScale = new Vector2(Mathf.Sign(moveInput.x), transform.localScale.y);
         }
     }
 
