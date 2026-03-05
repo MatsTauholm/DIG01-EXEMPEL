@@ -27,7 +27,7 @@ public class NavmeshMovement : MonoBehaviour
         }
     }
 
-    void MoveToMouseClick()
+    private void MoveToMouseClick()
     {
         Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); //Checks position of mouse click
 
