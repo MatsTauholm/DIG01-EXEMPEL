@@ -5,14 +5,8 @@ using UnityEngine;
 
 public class NavmeshUpdate : MonoBehaviour
 {
-    public NavMeshSurface surface2D;
-
-
-    void Update()
+    static void UpdateNavMesh(NavMeshSurface surface2D)
     {
-        
-        
-            surface2D.UpdateNavMesh(surface2D.navMeshData);
-        
+         surface2D.UpdateNavMesh(surface2D.navMeshData);
     }
 }
