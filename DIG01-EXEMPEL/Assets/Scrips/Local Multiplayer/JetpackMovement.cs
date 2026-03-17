@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class JetpackMovement : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 5f;
-    [SerializeField] float flyThrust = 5f;
+    [SerializeField] float jetpackForce = 5f;
 
     private Vector2 moveInput;
     private Rigidbody2D rb;
@@ -24,6 +24,7 @@ public class JetpackMovement : MonoBehaviour
 
     void OnFly(InputValue button)
     {
+        Debug.Log("Button pressed");
         if (button.isPressed)
         {
             StartFlying();
@@ -33,8 +34,6 @@ public class JetpackMovement : MonoBehaviour
             StopFlying();
         }
     }
-
-   
 
     void Update()
     {
@@ -50,7 +49,7 @@ public class JetpackMovement : MonoBehaviour
 
     private void StartFlying()
     {
-
+        rb.AddForce(Vector2.up * jetpackForce);
     }
 
     private void StopFlying()

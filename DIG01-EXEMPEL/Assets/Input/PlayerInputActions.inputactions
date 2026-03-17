@@ -61,7 +61,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "New action",
+                    "name": "Fly",
                     "type": "Button",
                     "id": "fa730178-cda2-4871-a02b-97d65b669101",
                     "expectedControlType": "",
@@ -250,11 +250,22 @@
                 {
                     "name": "",
                     "id": "c929c5cb-003f-45fd-b822-9f76c13b4960",
-                    "path": "",
-                    "interactions": "",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "Hold",
                     "processors": "",
-                    "groups": "",
-                    "action": "New action",
+                    "groups": ";Keyboard",
+                    "action": "Fly",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5103f8e7-64c6-4ee1-bf11-263a9a21a36c",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "Fly",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

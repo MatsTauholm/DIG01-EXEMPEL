@@ -147,7 +147,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""Fly"",
                     ""type"": ""Button"",
                     ""id"": ""fa730178-cda2-4871-a02b-97d65b669101"",
                     ""expectedControlType"": """",
@@ -336,11 +336,22 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""c929c5cb-003f-45fd-b822-9f76c13b4960"",
-                    ""path"": """",
-                    ""interactions"": """",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": ""Hold"",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""New action"",
+                    ""groups"": "";Keyboard"",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5103f8e7-64c6-4ee1-bf11-263a9a21a36c"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Fly"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -533,7 +544,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Transform = m_Player.FindAction("Transform", throwIfNotFound: true);
-        m_Player_Newaction = m_Player.FindAction("New action", throwIfNotFound: true);
+        m_Player_Fly = m_Player.FindAction("Fly", throwIfNotFound: true);
         // Input Interactions EX
         m_InputInteractionsEX = asset.FindActionMap("Input Interactions EX", throwIfNotFound: true);
         m_InputInteractionsEX_Hold = m_InputInteractionsEX.FindAction("Hold", throwIfNotFound: true);
@@ -627,7 +638,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Transform;
-    private readonly InputAction m_Player_Newaction;
+    private readonly InputAction m_Player_Fly;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -664,9 +675,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Transform => m_Wrapper.m_Player_Transform;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Newaction".
+        /// Provides access to the underlying input action "Player/Fly".
         /// </summary>
-        public InputAction @Newaction => m_Wrapper.m_Player_Newaction;
+        public InputAction @Fly => m_Wrapper.m_Player_Fly;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -711,9 +722,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Transform.started += instance.OnTransform;
             @Transform.performed += instance.OnTransform;
             @Transform.canceled += instance.OnTransform;
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @Fly.started += instance.OnFly;
+            @Fly.performed += instance.OnFly;
+            @Fly.canceled += instance.OnFly;
         }
 
         /// <summary>
@@ -743,9 +754,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Transform.started -= instance.OnTransform;
             @Transform.performed -= instance.OnTransform;
             @Transform.canceled -= instance.OnTransform;
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @Fly.started -= instance.OnFly;
+            @Fly.performed -= instance.OnFly;
+            @Fly.canceled -= instance.OnFly;
         }
 
         /// <summary>
@@ -1049,12 +1060,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTransform(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "New action" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Fly" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnFly(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Input Interactions EX" which allows adding and removing callbacks.
