@@ -57,14 +57,5 @@ public class PlayerMoveWithoutAnimations : MonoBehaviour
             shouldJump = false;
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (coll.IsTouchingLayers(LayerMask.GetMask("Hazards")))
-        {
-            FindFirstObjectByType<GameSession>().PlayerProcessDeath();
-        }
-    }
-
 }
 
