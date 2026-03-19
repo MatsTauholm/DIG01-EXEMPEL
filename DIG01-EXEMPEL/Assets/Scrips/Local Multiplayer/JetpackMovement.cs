@@ -8,6 +8,7 @@ public class JetpackMovement : MonoBehaviour
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float jetpackForce = 5f;
 
+    private bool isFlying = false;
     private Vector2 moveInput;
     private Rigidbody2D rb;
 
@@ -27,11 +28,11 @@ public class JetpackMovement : MonoBehaviour
         Debug.Log("Button pressed");
         if (button.isPressed)
         {
-            StartFlying();
+            isFlying = true;
         }
         else
         {
-            StopFlying();
+            isFlying = false;
         }
     }
 
@@ -47,13 +48,16 @@ public class JetpackMovement : MonoBehaviour
         rb.linearVelocity = playerVelocity;
     }
 
-    private void StartFlying()
+    private void FixedUpdate()
     {
-        rb.AddForce(Vector2.up * jetpackForce);
+         StartFlying();
     }
 
-    private void StopFlying()
+    private void StartFlying()
     {
-
+        if (isFlying)
+        {
+            rb.AddForce(Vector2.up * jetpackForce);
+        }   
     }
 }

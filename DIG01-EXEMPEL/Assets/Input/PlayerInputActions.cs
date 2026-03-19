@@ -337,7 +337,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""c929c5cb-003f-45fd-b822-9f76c13b4960"",
                     ""path"": ""<Keyboard>/shift"",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": "";Keyboard"",
                     ""action"": ""Fly"",
