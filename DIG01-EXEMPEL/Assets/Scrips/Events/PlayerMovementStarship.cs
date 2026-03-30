@@ -1,13 +1,19 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovementStarship : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
 
     [SerializeField] float thrustForce = 10f;
     [SerializeField] float rotationSpeed = 200f;
     [SerializeField] float maxSpeed = 15f;
+
+    [Header("Shooting Settings")]
+    [SerializeField] Transform muzzle;
+    [SerializeField] float bulletSpeed = 25f;
+    [SerializeField] float fireCooldownSeconds = 0.15f;
+    [SerializeField] float bulletLifetimeSeconds = 2.5f;
 
     [Header("Screen Wrapping")]
     [SerializeField] bool screenWrap = true;
@@ -18,11 +24,13 @@ public class PlayerMovementStarship : MonoBehaviour
 
     private float rotateInput;
     private bool thrusting;
+    private double nextFireTime;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         mainCam = Camera.main;
+        if (muzzle == null) muzzle = transform;
     }
 
     public void OnRotate(InputValue value)
@@ -33,6 +41,14 @@ public class PlayerMovementStarship : MonoBehaviour
     public void OnThrust(InputValue value)
     {
         thrusting = value.isPressed;
+    }
+
+    public void OnFire(InputValue value)
+    {
+        if (!value.isPressed) return;
+        if (Time.timeAsDouble < nextFireTime) return;
+        nextFireTime = Time.timeAsDouble + fireCooldownSeconds;
+        FireBullet();
     }
 
     private void FixedUpdate()
@@ -84,5 +100,24 @@ public class PlayerMovementStarship : MonoBehaviour
             screenPos.y = 1 + screenPadding;
 
         transform.position = mainCam.ViewportToWorldPoint(screenPos);
+    }
+
+    private void FireBullet()
+    {
+        var bulletGo = new GameObject("Bullet");
+        bulletGo.transform.position = muzzle.position;
+        bulletGo.transform.rotation = transform.rotation;
+
+        var bulletRb = bulletGo.AddComponent<Rigidbody2D>();
+        bulletRb.gravityScale = 0f;
+        bulletRb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        bulletRb.linearVelocity = (Vector2)transform.up * bulletSpeed;
+
+        var col = bulletGo.AddComponent<CircleCollider2D>();
+        col.isTrigger = true;
+        col.radius = 0.1f;
+
+        var bullet = bulletGo.AddComponent<Bullet>();
+        bullet.lifeTimeSeconds = bulletLifetimeSeconds;
     }
 }

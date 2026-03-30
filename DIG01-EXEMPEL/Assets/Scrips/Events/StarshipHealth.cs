@@ -6,6 +6,12 @@ public class StarshipHealth : MonoBehaviour
     public int health = 100;
     private int currentHealth;
 
+    private void Awake()
+    {
+        currentHealth = health;
+        GameEvents.onHealthChanged?.Invoke(currentHealth);
+    }
+
     private void OnEnable()
     {
         GameEvents.onPlayerDamaged += TakeDamage;
@@ -21,9 +27,9 @@ public class StarshipHealth : MonoBehaviour
         currentHealth -= damage;
         GameEvents.onHealthChanged?.Invoke(currentHealth);
 
-        if (currentHealth < 0)
+        if (currentHealth <= 0)
         {
-            //Player is dead
+            GameEvents.onPlayerDeath?.Invoke();
         }
     }
 
