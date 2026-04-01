@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class StarshipHealth : MonoBehaviour
+public class HealthSystem : MonoBehaviour
 {
     public int health = 100;
     private int currentHealth;
@@ -9,6 +9,10 @@ public class StarshipHealth : MonoBehaviour
     private void Awake()
     {
         currentHealth = health;
+    }
+
+    private void Start()
+    {
         GameEvents.onHealthChanged?.Invoke(currentHealth);
     }
 
@@ -25,6 +29,7 @@ public class StarshipHealth : MonoBehaviour
     private void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        Debug.Log($"Player took {damage} damage. Current health: {currentHealth}");
         GameEvents.onHealthChanged?.Invoke(currentHealth);
 
         if (currentHealth <= 0)

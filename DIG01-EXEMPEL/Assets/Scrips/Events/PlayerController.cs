@@ -11,9 +11,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Shooting Settings")]
     [SerializeField] Transform muzzle;
+    [SerializeField] GameObject bulletPrefab;
     [SerializeField] float bulletSpeed = 25f;
-    [SerializeField] float fireCooldownSeconds = 0.15f;
-    [SerializeField] float bulletLifetimeSeconds = 2.5f;
 
     [Header("Screen Wrapping")]
     [SerializeField] bool screenWrap = true;
@@ -45,9 +44,6 @@ public class PlayerController : MonoBehaviour
 
     public void OnFire(InputValue value)
     {
-        if (!value.isPressed) return;
-        if (Time.timeAsDouble < nextFireTime) return;
-        nextFireTime = Time.timeAsDouble + fireCooldownSeconds;
         FireBullet();
     }
 
@@ -85,6 +81,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void FireBullet()
+    {
+        var bullet = Instantiate(bulletPrefab, muzzle.position, muzzle.rotation);
+        bullet.GetComponent<Rigidbody2D>().linearVelocity = muzzle.up * bulletSpeed;
+    }
+
     void WrapScreen()
     {
         Vector3 screenPos = mainCam.WorldToViewportPoint(transform.position);
@@ -100,24 +102,5 @@ public class PlayerController : MonoBehaviour
             screenPos.y = 1 + screenPadding;
 
         transform.position = mainCam.ViewportToWorldPoint(screenPos);
-    }
-
-    private void FireBullet()
-    {
-        var bulletGo = new GameObject("Bullet");
-        bulletGo.transform.position = muzzle.position;
-        bulletGo.transform.rotation = transform.rotation;
-
-        var bulletRb = bulletGo.AddComponent<Rigidbody2D>();
-        bulletRb.gravityScale = 0f;
-        bulletRb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-        bulletRb.linearVelocity = (Vector2)transform.up * bulletSpeed;
-
-        var col = bulletGo.AddComponent<CircleCollider2D>();
-        col.isTrigger = true;
-        col.radius = 0.1f;
-
-        var bullet = bulletGo.AddComponent<Bullet>();
-        bullet.lifeTimeSeconds = bulletLifetimeSeconds;
     }
 }

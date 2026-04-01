@@ -8,7 +8,7 @@ public static class GameEvents
     public static Action onPlayerDeath;
 
     // Shooting / scoring
-    public static Action<GameObject, int> onEnemyHit; // (enemy gameObject, points)
+    public static Action<GameObject> onEnemyHit; // (enemy gameObject)
     public static Action<int> onEnemyDestroyed; // (points)
     public static Action<int> onScoreChanged; // (newScore)
 }

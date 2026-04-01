@@ -7,6 +7,17 @@ public class HealthBar : MonoBehaviour
     [SerializeField] Gradient gradient;
     [SerializeField] Image fill;
 
+    private void Start()
+    {
+        var healthSystem = FindFirstObjectByType<HealthSystem>();
+        if (healthSystem != null && healthBar != null)
+        {
+            healthBar.minValue = 0;
+            healthBar.maxValue = healthSystem.health;
+            UpdateHealthBar(healthSystem.health);
+        }
+    }
+
     private void OnEnable()
     {
         GameEvents.onHealthChanged += UpdateHealthBar;
@@ -20,11 +31,12 @@ public class HealthBar : MonoBehaviour
 
     public void UpdateHealthBar(int health)
     {
-        healthBar.value = health;
+        if (healthBar == null || fill == null)
+        {
+            return;
+        }
 
+        healthBar.value = Mathf.Clamp(health, (int)healthBar.minValue, (int)healthBar.maxValue);
         fill.color = gradient.Evaluate(healthBar.normalizedValue);
     }
-
-
-
 }
