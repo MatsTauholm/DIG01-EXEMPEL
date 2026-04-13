@@ -15,21 +15,43 @@ public class PlayerSpawnManager : MonoBehaviour
     {
        if (Keyboard.current.wKey.wasPressedThisFrame && !wasdJoined)
         {
-            SpawnPlayer(0);
+              var player = PlayerInput.Instantiate(playerPrefab,
+                controlScheme: "WASD",
+                pairWithDevice: Keyboard.current);
+                if (spawnPoints.Length > 0)
+                {
+                    player.transform.position = spawnPoints[0].position;
+                }
             wasdJoined = true;
         }
-        else if (Keyboard.current.upArrowKey.wasPressedThisFrame && !arrowJoined)
+
+         if (Keyboard.current.upArrowKey.wasPressedThisFrame && !arrowJoined)
         {
             var player = PlayerInput.Instantiate(playerPrefab,
-                controlScheme: "Keyboard",
+                controlScheme: "Arrows",
                 pairWithDevice: Keyboard.current);
 
+            if (spawnPoints.Length > 1)
+            {
+                player.transform.position = spawnPoints[1].position;
+            }
             arrowJoined = true;
         }
-        else if (Gamepad.current != null && Gamepad.current.buttonSouth.wasPressedThisFrame && !gamepadJoined)
+
+        foreach (var gamepad in Gamepad.all)
         {
-            SpawnPlayer(2);
-            gamepadJoined = true;
+            if (gamepad.buttonSouth.wasPressedThisFrame && !gamepadJoined)
+            {
+                var player = PlayerInput.Instantiate(playerPrefab,
+                controlScheme: "Gamepad",
+                pairWithDevice: gamepad);
+            
+                 if (spawnPoints.Length > 2)
+                {
+                    player.transform.position = spawnPoints[2].position;
+                }
+                gamepadJoined = true;
+            }
         }
     }
 }

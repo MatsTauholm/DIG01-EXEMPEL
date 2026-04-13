@@ -29,8 +29,8 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         mainCam = Camera.main;
-        if (muzzle == null) muzzle = transform;
     }
+    
 
     public void OnRotate(InputValue value)
     {

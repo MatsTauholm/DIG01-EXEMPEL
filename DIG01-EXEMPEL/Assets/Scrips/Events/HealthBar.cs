@@ -7,17 +7,6 @@ public class HealthBar : MonoBehaviour
     [SerializeField] Gradient gradient;
     [SerializeField] Image fill;
 
-    private void Start()
-    {
-        var healthSystem = FindFirstObjectByType<HealthSystem>();
-        if (healthSystem != null && healthBar != null)
-        {
-            healthBar.minValue = 0;
-            healthBar.maxValue = healthSystem.health;
-            UpdateHealthBar(healthSystem.health);
-        }
-    }
-
     private void OnEnable()
     {
         GameEvents.onHealthChanged += UpdateHealthBar;
