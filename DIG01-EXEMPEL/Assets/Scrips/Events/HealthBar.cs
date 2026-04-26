@@ -20,11 +20,12 @@ public class HealthBar : MonoBehaviour
 
     public void UpdateHealthBar(int health)
     {
-        healthBar.value = health;
+        if (healthBar == null || fill == null)
+        {
+            return;
+        }
 
+        healthBar.value = Mathf.Clamp(health, (int)healthBar.minValue, (int)healthBar.maxValue);
         fill.color = gradient.Evaluate(healthBar.normalizedValue);
     }
-
-
-
 }

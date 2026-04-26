@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Persistence_2.unity
     guid: 41bbb59f9a23659459bafd5fb00dc989
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: 2980d8b9dedacb047ace673889dc9909, type: 2}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: bea7334f9fca6c54ab57317d7d3ac149, type: 3}
+  m_UseUCBPForAssetBundles: 0

@@ -1,13 +1,18 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMovementStarship : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
 
     [SerializeField] float thrustForce = 10f;
     [SerializeField] float rotationSpeed = 200f;
     [SerializeField] float maxSpeed = 15f;
+
+    [Header("Shooting Settings")]
+    [SerializeField] Transform muzzle;
+    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] float bulletSpeed = 25f;
 
     [Header("Screen Wrapping")]
     [SerializeField] bool screenWrap = true;
@@ -18,12 +23,14 @@ public class PlayerMovementStarship : MonoBehaviour
 
     private float rotateInput;
     private bool thrusting;
+    private double nextFireTime;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         mainCam = Camera.main;
     }
+    
 
     public void OnRotate(InputValue value)
     {
@@ -33,6 +40,11 @@ public class PlayerMovementStarship : MonoBehaviour
     public void OnThrust(InputValue value)
     {
         thrusting = value.isPressed;
+    }
+
+    public void OnFire(InputValue value)
+    {
+        FireBullet();
     }
 
     private void FixedUpdate()
@@ -67,6 +79,12 @@ public class PlayerMovementStarship : MonoBehaviour
         {
             rb.linearVelocity = rb.linearVelocity.normalized * maxSpeed;
         }
+    }
+
+    void FireBullet()
+    {
+        var bullet = Instantiate(bulletPrefab, muzzle.position, muzzle.rotation);
+        bullet.GetComponent<Rigidbody2D>().linearVelocity = muzzle.up * bulletSpeed;
     }
 
     void WrapScreen()
