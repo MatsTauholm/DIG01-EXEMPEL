@@ -9,7 +9,6 @@ public class GridPlacement : MonoBehaviour
     [SerializeField] private GameObject objectToPlace;
     [SerializeField] private GameObject previewObjectPrefab;
 
-    private Vector2 snappedPosition;
     private Vector2 snappedMousePosition;
     private GameObject previewInstance;
     private HashSet<Vector2> occupiedPositions = new HashSet<Vector2>();
@@ -22,22 +21,12 @@ public class GridPlacement : MonoBehaviour
 
     void OnClick(InputValue button)
     {
-        if (!occupiedPositions.Contains(snappedPosition)) //Check if the current snapped position is not occupied before placing the object
-        {
-            PlaceObject();
-        }
+        PlaceObject();
     }
 
     private void PlaceObject()
     {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()); // Get the mouse position in world coordinates
-        //Snap the mouse position to the nearest grid point by rounding it to the nearest multiple of gridSize
-        snappedMousePosition = new Vector2(
-            Mathf.Round(mousePosition.x / gridSize) * gridSize,
-            Mathf.Round(mousePosition.y / gridSize) * gridSize
-        ); 
-
-        if (occupiedPositions.Contains(snappedMousePosition)) //Another check to ensure that the snapped mouse position is not already occupied before instantiating the object
+        if (occupiedPositions.Contains(snappedMousePosition)) //Check to ensure that the snapped mouse position is not already occupied before instantiating the object
         {  
             return;
         }
@@ -48,9 +37,21 @@ public class GridPlacement : MonoBehaviour
 
     void Update()
     {
-        previewInstance.transform.position = snappedPosition; // Update the position of the preview instance to follow the mouse cursor
-        bool isOccupied = occupiedPositions.Contains(snappedPosition); //Set bool if the current snapped position is occupied
+        GetSnappedPosition();
+        
+        previewInstance.transform.position = snappedMousePosition; // Update the position of the preview instance to follow the mouse cursor
+        bool isOccupied = occupiedPositions.Contains(snappedMousePosition); //Set bool if the current snapped position is occupied
         UpdatePreviewColor(isOccupied);
+    }
+
+    private void GetSnappedPosition()
+    {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()); // Get the mouse position in world coordinates
+        //Snap the mouse position to the nearest grid point by rounding it to the nearest multiple of gridSize
+        snappedMousePosition = new Vector2(
+            Mathf.Round(mousePosition.x / gridSize) * gridSize,
+            Mathf.Round(mousePosition.y / gridSize) * gridSize
+        );
     }
 
     private void UpdatePreviewColor(bool isOccupied) //Change the color of the preview instance based on whether the current snapped position is occupied or not
