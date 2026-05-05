@@ -124,8 +124,8 @@ namespace NavMeshPlus.Components
             link.area = m_Area;
             link.agentTypeID = m_AgentTypeID;
             m_LinkInstance = NavMesh.AddLink(link, transform.position, transform.rotation);
-            if (NavMesh.IsLinkValid(m_LinkInstance))
-                m_LinkInstance.owner = this;
+            if (NavMesh.IsLinkValid(m_LinkInstance))   
+                NavMesh.SetLinkOwner(m_LinkInstance, this);
 
             m_LastPosition = transform.position;
             m_LastRotation = transform.rotation;
@@ -157,7 +157,7 @@ namespace NavMeshPlus.Components
         {
             m_Width = Mathf.Max(0.0f, m_Width);
 
-            if (!m_LinkInstance.valid)
+            if (!NavMesh.IsLinkValid(m_LinkInstance))
                 return;
 
             UpdateLink();
