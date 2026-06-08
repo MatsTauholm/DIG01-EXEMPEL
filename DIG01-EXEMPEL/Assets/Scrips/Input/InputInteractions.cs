@@ -9,6 +9,11 @@ public class InputInteractions : MonoBehaviour
         {
             Debug.Log("Holding!");
         }
+
+        if (ctx.canceled)
+        {
+            Debug.Log("Held for " + ctx.duration + " seconds.");
+        }
     }
 
     public void OnMultiTap(InputAction.CallbackContext ctx)
