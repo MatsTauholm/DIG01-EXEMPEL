@@ -4,21 +4,32 @@ using UnityEngine.InputSystem.Interactions;
 
 public class InputInteractions : MonoBehaviour
 {
-    public void OnFire(InputAction.CallbackContext ctx)
+    public void OnFire(InputAction.CallbackContext context)
     {
-        if (ctx.started && ctx.interaction is SlowTapInteraction)
+        // SlowTap starts charging when the button is pressed
+        if (context.started)
         {
-            Debug.Log("Powershot");
+            Debug.Log("Started charging!");
         }
 
-        if (ctx.canceled)
+        // A Tap interaction completed
+        if (context.performed &&
+            context.interaction is UnityEngine.InputSystem.Interactions.TapInteraction)
         {
-            //Debug.Log("Powershot");
+            Debug.Log("Performed a Tap!");
         }
 
-        if (ctx.performed)
+        // A SlowTap interaction completed
+        if (context.performed &&
+            context.interaction is UnityEngine.InputSystem.Interactions.SlowTapInteraction)
         {
-            Debug.Log("Fire!");
+            Debug.Log("Performed a Slow Tap!");
+        }
+
+        // Button released before completing a SlowTap
+        if (context.canceled)
+        {
+           Debug.Log("Stopped charging");
         }
     }
 
