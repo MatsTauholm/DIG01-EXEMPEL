@@ -416,6 +416,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Fire"",
+                    ""type"": ""Button"",
+                    ""id"": ""6dc11aa1-b2d6-4a36-89e7-ac135dcfe60b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -425,7 +434,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": ""Hold(duration=0.6)"",
                     ""processors"": """",
-                    ""groups"": "";Keyboard"",
+                    ""groups"": "";Keyboard;Keyboard & Mouse"",
                     ""action"": ""Hold"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -436,7 +445,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": ""Tap"",
                     ""processors"": """",
-                    ""groups"": "";Keyboard"",
+                    ""groups"": "";Keyboard;Keyboard & Mouse"",
                     ""action"": ""Tap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -447,7 +456,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": ""MultiTap"",
                     ""processors"": """",
-                    ""groups"": "";Keyboard"",
+                    ""groups"": "";Keyboard;Keyboard & Mouse"",
                     ""action"": ""MultiTap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -458,8 +467,19 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": ""SlowTap(duration=0.4)"",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": "";Keyboard;Keyboard & Mouse"",
                     ""action"": ""SlowTap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5ee8b1d0-acbd-4630-beb3-957be89f1c5f"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""SlowTap(duration=1),Tap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse;Mouse"",
+                    ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -572,6 +592,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_InputInteractionsEX_Tap = m_InputInteractionsEX.FindAction("Tap", throwIfNotFound: true);
         m_InputInteractionsEX_MultiTap = m_InputInteractionsEX.FindAction("MultiTap", throwIfNotFound: true);
         m_InputInteractionsEX_SlowTap = m_InputInteractionsEX.FindAction("SlowTap", throwIfNotFound: true);
+        m_InputInteractionsEX_Fire = m_InputInteractionsEX.FindAction("Fire", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
@@ -830,6 +851,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_InputInteractionsEX_Tap;
     private readonly InputAction m_InputInteractionsEX_MultiTap;
     private readonly InputAction m_InputInteractionsEX_SlowTap;
+    private readonly InputAction m_InputInteractionsEX_Fire;
     /// <summary>
     /// Provides access to input actions defined in input action map "Input Interactions EX".
     /// </summary>
@@ -857,6 +879,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "InputInteractionsEX/SlowTap".
         /// </summary>
         public InputAction @SlowTap => m_Wrapper.m_InputInteractionsEX_SlowTap;
+        /// <summary>
+        /// Provides access to the underlying input action "InputInteractionsEX/Fire".
+        /// </summary>
+        public InputAction @Fire => m_Wrapper.m_InputInteractionsEX_Fire;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -895,6 +921,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @SlowTap.started += instance.OnSlowTap;
             @SlowTap.performed += instance.OnSlowTap;
             @SlowTap.canceled += instance.OnSlowTap;
+            @Fire.started += instance.OnFire;
+            @Fire.performed += instance.OnFire;
+            @Fire.canceled += instance.OnFire;
         }
 
         /// <summary>
@@ -918,6 +947,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @SlowTap.started -= instance.OnSlowTap;
             @SlowTap.performed -= instance.OnSlowTap;
             @SlowTap.canceled -= instance.OnSlowTap;
+            @Fire.started -= instance.OnFire;
+            @Fire.performed -= instance.OnFire;
+            @Fire.canceled -= instance.OnFire;
         }
 
         /// <summary>
@@ -1141,5 +1173,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnSlowTap(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Fire" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnFire(InputAction.CallbackContext context);
     }
 }

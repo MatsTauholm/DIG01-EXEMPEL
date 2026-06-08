@@ -330,6 +330,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Fire",
+                    "type": "Button",
+                    "id": "6dc11aa1-b2d6-4a36-89e7-ac135dcfe60b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -339,7 +348,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "Hold(duration=0.6)",
                     "processors": "",
-                    "groups": ";Keyboard",
+                    "groups": ";Keyboard;Keyboard & Mouse",
                     "action": "Hold",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -350,7 +359,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "Tap",
                     "processors": "",
-                    "groups": ";Keyboard",
+                    "groups": ";Keyboard;Keyboard & Mouse",
                     "action": "Tap",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -361,7 +370,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "MultiTap",
                     "processors": "",
-                    "groups": ";Keyboard",
+                    "groups": ";Keyboard;Keyboard & Mouse",
                     "action": "MultiTap",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -372,8 +381,19 @@
                     "path": "<Keyboard>/space",
                     "interactions": "SlowTap(duration=0.4)",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard;Keyboard & Mouse",
                     "action": "SlowTap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5ee8b1d0-acbd-4630-beb3-957be89f1c5f",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "SlowTap(duration=1),Tap",
+                    "processors": "",
+                    "groups": ";Keyboard & Mouse;Mouse",
+                    "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

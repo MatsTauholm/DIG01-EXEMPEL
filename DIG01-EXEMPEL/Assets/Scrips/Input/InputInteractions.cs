@@ -1,8 +1,27 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 public class InputInteractions : MonoBehaviour
 {
+    public void OnFire(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started && ctx.interaction is SlowTapInteraction)
+        {
+            Debug.Log("Powershot");
+        }
+
+        if (ctx.canceled)
+        {
+            //Debug.Log("Powershot");
+        }
+
+        if (ctx.performed)
+        {
+            Debug.Log("Fire!");
+        }
+    }
+
     public void OnHold(InputAction.CallbackContext ctx)
     {
         if (ctx.performed)
