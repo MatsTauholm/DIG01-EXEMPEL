@@ -21,7 +21,7 @@ public class PlayerMovementMouse : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        movementSystemManager = FindFirstObjectByType<MovementSystemManager>();
+        movementSystemManager = FindAnyObjectByType<MovementSystemManager>();
     }
 
     void OnClick(InputValue button)

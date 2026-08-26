@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MovementSystemManager : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class MovementSystemManager : MonoBehaviour
     
     void Update()
     {
-        ChangeMovementSystem();
+        //ChangeMovementSystem();
 
         switch (currentMovement)
         {
@@ -34,12 +35,12 @@ public class MovementSystemManager : MonoBehaviour
 
     private void ChangeMovementSystem()
     {
-        //Checking whitch numberkey is pressed
+        //Checking which numberkey is pressed
         for (int i = 0; i <= 9; i++)
         {
             KeyCode key = KeyCode.Alpha0 + i;
 
-            if (Input.GetKeyDown(key))
+            //if (Keyboard.current[key].isPressed)
             {
                 currentMovement = i;
             }

@@ -16,7 +16,7 @@ public class PlayerMovementKeyboard : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        movementSystemManager = FindFirstObjectByType<MovementSystemManager>();
+        movementSystemManager = FindAnyObjectByType<MovementSystemManager>();
     }
 
     void OnMove(InputValue value)
