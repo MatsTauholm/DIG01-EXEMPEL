@@ -454,11 +454,33 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""ec58c135-fc32-4616-96db-a976e52c2102"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Hold(duration=0.6)"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse;Mouse"",
+                    ""action"": ""Hold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""5524a27e-0643-4d22-9973-f425601b2c1c"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": ""Tap"",
                     ""processors"": """",
                     ""groups"": "";Keyboard;Keyboard & Mouse"",
+                    ""action"": ""Tap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0068d9d7-486a-4074-9926-932cc153a4d8"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Tap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse;Mouse"",
                     ""action"": ""Tap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -476,11 +498,33 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""4e93e3ea-d414-4d1a-b145-90339d23fafc"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""MultiTap"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse;Mouse"",
+                    ""action"": ""MultiTap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""78a5fe68-9c11-41bf-a3f8-dc9706b0846a"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": ""SlowTap(duration=0.4)"",
                     ""processors"": """",
                     ""groups"": "";Keyboard;Keyboard & Mouse"",
+                    ""action"": ""SlowTap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34e4b27d-38a2-4a13-b84a-3b88727eaa65"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""SlowTap(duration=0.4)"",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard & Mouse;Mouse"",
                     ""action"": ""SlowTap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

@@ -4,6 +4,20 @@ using UnityEngine.InputSystem.Interactions;
 
 public class InputInteractions : MonoBehaviour
 {
+
+    [Header("Zoom Settings")]
+    [SerializeField] private float normalZoom = 5f;
+    [SerializeField] private float zoomedIn = 3f;
+    [SerializeField] private float zoomSpeed = 5f;
+    
+    private float targetZoom;
+
+    private void Start()
+    {
+        targetZoom = normalZoom;
+    }
+
+
     public void OnFire(InputAction.CallbackContext context)
     {
         // SlowTap starts charging when the button is pressed
@@ -37,11 +51,13 @@ public class InputInteractions : MonoBehaviour
     {
         if (ctx.performed)
         {
+            targetZoom = zoomedIn;
             Debug.Log("Holding!");
         }
 
         if (ctx.canceled)
         {
+            targetZoom = normalZoom;
             Debug.Log("Held for " + ctx.duration + " seconds.");
         }
     }
@@ -69,4 +85,14 @@ public class InputInteractions : MonoBehaviour
             Debug.Log("Slow Tapped!");
         }
     }
+
+    private void Update()
+    {
+        Camera.main.orthographicSize = Mathf.Lerp(
+        Camera.main.orthographicSize,
+        targetZoom,
+        zoomSpeed * Time.deltaTime) ;
+    }
+
+
 }
