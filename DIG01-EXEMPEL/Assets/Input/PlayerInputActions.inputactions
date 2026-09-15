@@ -304,46 +304,6 @@
             "id": "43e12af8-5fc8-4cce-a56a-6570cac1ee8f",
             "actions": [
                 {
-                    "name": "Hold",
-                    "type": "Button",
-                    "id": "cbcb2eb7-399b-451d-86c5-7f86e66a640e",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false,
-                    "priority": 0
-                },
-                {
-                    "name": "Tap",
-                    "type": "Button",
-                    "id": "3f1cd046-5872-435c-835b-281bb9485ee0",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false,
-                    "priority": 0
-                },
-                {
-                    "name": "MultiTap",
-                    "type": "Button",
-                    "id": "e08b8ca3-58ce-49c0-8cb9-4ab999e56866",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false,
-                    "priority": 0
-                },
-                {
-                    "name": "SlowTap",
-                    "type": "Button",
-                    "id": "a5e22461-2cfc-42f4-85e9-572c7309d8c1",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false,
-                    "priority": 0
-                },
-                {
                     "name": "Fire",
                     "type": "Button",
                     "id": "6dc11aa1-b2d6-4a36-89e7-ac135dcfe60b",
@@ -357,97 +317,9 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "0df398f2-ca96-4800-b927-3a142ea9f61c",
-                    "path": "<Keyboard>/space",
-                    "interactions": "Hold(duration=0.6)",
-                    "processors": "",
-                    "groups": ";Keyboard;Keyboard & Mouse",
-                    "action": "Hold",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ec58c135-fc32-4616-96db-a976e52c2102",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "Hold(duration=0.6)",
-                    "processors": "",
-                    "groups": ";Keyboard & Mouse;Mouse",
-                    "action": "Hold",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "5524a27e-0643-4d22-9973-f425601b2c1c",
-                    "path": "<Keyboard>/space",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": ";Keyboard;Keyboard & Mouse",
-                    "action": "Tap",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0068d9d7-486a-4074-9926-932cc153a4d8",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": ";Keyboard & Mouse;Mouse",
-                    "action": "Tap",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "bfaa85b3-f25f-48f3-9799-7bbee77bd04f",
-                    "path": "<Keyboard>/space",
-                    "interactions": "MultiTap",
-                    "processors": "",
-                    "groups": ";Keyboard;Keyboard & Mouse",
-                    "action": "MultiTap",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4e93e3ea-d414-4d1a-b145-90339d23fafc",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "MultiTap",
-                    "processors": "",
-                    "groups": ";Keyboard & Mouse;Mouse",
-                    "action": "MultiTap",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "78a5fe68-9c11-41bf-a3f8-dc9706b0846a",
-                    "path": "<Keyboard>/space",
-                    "interactions": "SlowTap(duration=0.4)",
-                    "processors": "",
-                    "groups": ";Keyboard;Keyboard & Mouse",
-                    "action": "SlowTap",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "34e4b27d-38a2-4a13-b84a-3b88727eaa65",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "SlowTap(duration=0.4)",
-                    "processors": "",
-                    "groups": ";Keyboard & Mouse;Mouse",
-                    "action": "SlowTap",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "5ee8b1d0-acbd-4630-beb3-957be89f1c5f",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "SlowTap(duration=1),Tap",
+                    "interactions": "Tap,Hold,MultiTap",
                     "processors": "",
                     "groups": ";Keyboard & Mouse;Mouse",
                     "action": "Fire",

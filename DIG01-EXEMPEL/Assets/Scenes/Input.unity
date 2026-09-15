@@ -353,6 +353,11 @@ MonoBehaviour:
   normalZoom: 7
   zoomedIn: 3
   zoomSpeed: 3
+  bulletPrefab: {fileID: 2666200966350632775, guid: 2085268606bf98b4a96494a63258efd3, type: 3}
+  superBulletPrefab: {fileID: 4864509345362423842, guid: 66abf073e6cc89048bf173354a71574f, type: 3}
+  firePoint: {fileID: 1462596049}
+  bulletSpeed: 20
+  bulletSpread: 15
 --- !u!114 &1738864029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,70 +403,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 2a70bee9-19e3-4a43-94d5-4ed1e28d7d68
     m_ActionName: 'Player/Attack[/Mouse/rightButton]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1738864028}
-        m_TargetAssemblyTypeName: InputInteractions, Assembly-CSharp
-        m_MethodName: OnHold
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: cbcb2eb7-399b-451d-86c5-7f86e66a640e
-    m_ActionName: 'Input Interactions EX/Interaction[/Keyboard/space]'
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1738864028}
-        m_TargetAssemblyTypeName: InputInteractions, Assembly-CSharp
-        m_MethodName: OnTap
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 3f1cd046-5872-435c-835b-281bb9485ee0
-    m_ActionName: Input Interactions EX/Tap
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1738864028}
-        m_TargetAssemblyTypeName: InputInteractions, Assembly-CSharp
-        m_MethodName: OnMultiTap
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: e08b8ca3-58ce-49c0-8cb9-4ab999e56866
-    m_ActionName: Input Interactions EX/MultiTap
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1738864028}
-        m_TargetAssemblyTypeName: InputInteractions, Assembly-CSharp
-        m_MethodName: OnSlowTap
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: a5e22461-2cfc-42f4-85e9-572c7309d8c1
-    m_ActionName: Input Interactions EX/SlowTap
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: ad12e3ae-a5b7-4de3-82ee-b9a8c8ef7bd8

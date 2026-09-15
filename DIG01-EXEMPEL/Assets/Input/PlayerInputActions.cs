@@ -390,46 +390,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             ""id"": ""43e12af8-5fc8-4cce-a56a-6570cac1ee8f"",
             ""actions"": [
                 {
-                    ""name"": ""Hold"",
-                    ""type"": ""Button"",
-                    ""id"": ""cbcb2eb7-399b-451d-86c5-7f86e66a640e"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false,
-                    ""priority"": 0
-                },
-                {
-                    ""name"": ""Tap"",
-                    ""type"": ""Button"",
-                    ""id"": ""3f1cd046-5872-435c-835b-281bb9485ee0"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false,
-                    ""priority"": 0
-                },
-                {
-                    ""name"": ""MultiTap"",
-                    ""type"": ""Button"",
-                    ""id"": ""e08b8ca3-58ce-49c0-8cb9-4ab999e56866"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false,
-                    ""priority"": 0
-                },
-                {
-                    ""name"": ""SlowTap"",
-                    ""type"": ""Button"",
-                    ""id"": ""a5e22461-2cfc-42f4-85e9-572c7309d8c1"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false,
-                    ""priority"": 0
-                },
-                {
                     ""name"": ""Fire"",
                     ""type"": ""Button"",
                     ""id"": ""6dc11aa1-b2d6-4a36-89e7-ac135dcfe60b"",
@@ -443,97 +403,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""0df398f2-ca96-4800-b927-3a142ea9f61c"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""Hold(duration=0.6)"",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard;Keyboard & Mouse"",
-                    ""action"": ""Hold"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ec58c135-fc32-4616-96db-a976e52c2102"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": ""Hold(duration=0.6)"",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard & Mouse;Mouse"",
-                    ""action"": ""Hold"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""5524a27e-0643-4d22-9973-f425601b2c1c"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""Tap"",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard;Keyboard & Mouse"",
-                    ""action"": ""Tap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0068d9d7-486a-4074-9926-932cc153a4d8"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": ""Tap"",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard & Mouse;Mouse"",
-                    ""action"": ""Tap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""bfaa85b3-f25f-48f3-9799-7bbee77bd04f"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""MultiTap"",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard;Keyboard & Mouse"",
-                    ""action"": ""MultiTap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4e93e3ea-d414-4d1a-b145-90339d23fafc"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": ""MultiTap"",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard & Mouse;Mouse"",
-                    ""action"": ""MultiTap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""78a5fe68-9c11-41bf-a3f8-dc9706b0846a"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""SlowTap(duration=0.4)"",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard;Keyboard & Mouse"",
-                    ""action"": ""SlowTap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""34e4b27d-38a2-4a13-b84a-3b88727eaa65"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": ""SlowTap(duration=0.4)"",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard & Mouse;Mouse"",
-                    ""action"": ""SlowTap"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""5ee8b1d0-acbd-4630-beb3-957be89f1c5f"",
                     ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": ""SlowTap(duration=1),Tap"",
+                    ""interactions"": ""Tap,Hold,MultiTap"",
                     ""processors"": """",
                     ""groups"": "";Keyboard & Mouse;Mouse"",
                     ""action"": ""Fire"",
@@ -645,10 +517,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Restart = m_Player.FindAction("Restart", throwIfNotFound: true);
         // Input Interactions EX
         m_InputInteractionsEX = asset.FindActionMap("Input Interactions EX", throwIfNotFound: true);
-        m_InputInteractionsEX_Hold = m_InputInteractionsEX.FindAction("Hold", throwIfNotFound: true);
-        m_InputInteractionsEX_Tap = m_InputInteractionsEX.FindAction("Tap", throwIfNotFound: true);
-        m_InputInteractionsEX_MultiTap = m_InputInteractionsEX.FindAction("MultiTap", throwIfNotFound: true);
-        m_InputInteractionsEX_SlowTap = m_InputInteractionsEX.FindAction("SlowTap", throwIfNotFound: true);
         m_InputInteractionsEX_Fire = m_InputInteractionsEX.FindAction("Fire", throwIfNotFound: true);
     }
 
@@ -904,10 +772,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     // Input Interactions EX
     private readonly InputActionMap m_InputInteractionsEX;
     private List<IInputInteractionsEXActions> m_InputInteractionsEXActionsCallbackInterfaces = new List<IInputInteractionsEXActions>();
-    private readonly InputAction m_InputInteractionsEX_Hold;
-    private readonly InputAction m_InputInteractionsEX_Tap;
-    private readonly InputAction m_InputInteractionsEX_MultiTap;
-    private readonly InputAction m_InputInteractionsEX_SlowTap;
     private readonly InputAction m_InputInteractionsEX_Fire;
     /// <summary>
     /// Provides access to input actions defined in input action map "Input Interactions EX".
@@ -920,22 +784,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
         public InputInteractionsEXActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        /// <summary>
-        /// Provides access to the underlying input action "InputInteractionsEX/Hold".
-        /// </summary>
-        public InputAction @Hold => m_Wrapper.m_InputInteractionsEX_Hold;
-        /// <summary>
-        /// Provides access to the underlying input action "InputInteractionsEX/Tap".
-        /// </summary>
-        public InputAction @Tap => m_Wrapper.m_InputInteractionsEX_Tap;
-        /// <summary>
-        /// Provides access to the underlying input action "InputInteractionsEX/MultiTap".
-        /// </summary>
-        public InputAction @MultiTap => m_Wrapper.m_InputInteractionsEX_MultiTap;
-        /// <summary>
-        /// Provides access to the underlying input action "InputInteractionsEX/SlowTap".
-        /// </summary>
-        public InputAction @SlowTap => m_Wrapper.m_InputInteractionsEX_SlowTap;
         /// <summary>
         /// Provides access to the underlying input action "InputInteractionsEX/Fire".
         /// </summary>
@@ -966,18 +814,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_InputInteractionsEXActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_InputInteractionsEXActionsCallbackInterfaces.Add(instance);
-            @Hold.started += instance.OnHold;
-            @Hold.performed += instance.OnHold;
-            @Hold.canceled += instance.OnHold;
-            @Tap.started += instance.OnTap;
-            @Tap.performed += instance.OnTap;
-            @Tap.canceled += instance.OnTap;
-            @MultiTap.started += instance.OnMultiTap;
-            @MultiTap.performed += instance.OnMultiTap;
-            @MultiTap.canceled += instance.OnMultiTap;
-            @SlowTap.started += instance.OnSlowTap;
-            @SlowTap.performed += instance.OnSlowTap;
-            @SlowTap.canceled += instance.OnSlowTap;
             @Fire.started += instance.OnFire;
             @Fire.performed += instance.OnFire;
             @Fire.canceled += instance.OnFire;
@@ -992,18 +828,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="InputInteractionsEXActions" />
         private void UnregisterCallbacks(IInputInteractionsEXActions instance)
         {
-            @Hold.started -= instance.OnHold;
-            @Hold.performed -= instance.OnHold;
-            @Hold.canceled -= instance.OnHold;
-            @Tap.started -= instance.OnTap;
-            @Tap.performed -= instance.OnTap;
-            @Tap.canceled -= instance.OnTap;
-            @MultiTap.started -= instance.OnMultiTap;
-            @MultiTap.performed -= instance.OnMultiTap;
-            @MultiTap.canceled -= instance.OnMultiTap;
-            @SlowTap.started -= instance.OnSlowTap;
-            @SlowTap.performed -= instance.OnSlowTap;
-            @SlowTap.canceled -= instance.OnSlowTap;
             @Fire.started -= instance.OnFire;
             @Fire.performed -= instance.OnFire;
             @Fire.canceled -= instance.OnFire;
@@ -1202,34 +1026,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     /// <seealso cref="InputInteractionsEXActions.RemoveCallbacks(IInputInteractionsEXActions)" />
     public interface IInputInteractionsEXActions
     {
-        /// <summary>
-        /// Method invoked when associated input action "Hold" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnHold(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Tap" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnTap(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "MultiTap" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnMultiTap(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "SlowTap" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSlowTap(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Fire" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
