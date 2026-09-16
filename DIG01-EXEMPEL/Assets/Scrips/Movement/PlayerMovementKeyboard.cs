@@ -13,7 +13,7 @@ public class PlayerMovementKeyboard : MonoBehaviour
     private Rigidbody2D rb;
     private MovementSystemManager movementSystemManager;
 
-    void Awake()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         movementSystemManager = FindAnyObjectByType<MovementSystemManager>();
