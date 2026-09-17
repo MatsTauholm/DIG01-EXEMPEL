@@ -398,6 +398,16 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""initialStateCheck"": false,
                     ""priority"": 0
+                },
+                {
+                    ""name"": ""Automatic Fire"",
+                    ""type"": ""Button"",
+                    ""id"": ""06afb4c5-7b50-4626-84a3-ac2bf54f838b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
                 }
             ],
             ""bindings"": [
@@ -416,10 +426,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""1405c8c8-06d5-4a94-823d-107639736d7c"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""Tap,Hold,MultiTap(tapTime=1)"",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": "";Keyboard & Mouse;Keyboard"",
-                    ""action"": ""Fire"",
+                    ""action"": ""Automatic Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -529,6 +539,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         // Input Interactions EX
         m_InputInteractionsEX = asset.FindActionMap("Input Interactions EX", throwIfNotFound: true);
         m_InputInteractionsEX_Fire = m_InputInteractionsEX.FindAction("Fire", throwIfNotFound: true);
+        m_InputInteractionsEX_AutomaticFire = m_InputInteractionsEX.FindAction("Automatic Fire", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
@@ -784,6 +795,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_InputInteractionsEX;
     private List<IInputInteractionsEXActions> m_InputInteractionsEXActionsCallbackInterfaces = new List<IInputInteractionsEXActions>();
     private readonly InputAction m_InputInteractionsEX_Fire;
+    private readonly InputAction m_InputInteractionsEX_AutomaticFire;
     /// <summary>
     /// Provides access to input actions defined in input action map "Input Interactions EX".
     /// </summary>
@@ -799,6 +811,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "InputInteractionsEX/Fire".
         /// </summary>
         public InputAction @Fire => m_Wrapper.m_InputInteractionsEX_Fire;
+        /// <summary>
+        /// Provides access to the underlying input action "InputInteractionsEX/AutomaticFire".
+        /// </summary>
+        public InputAction @AutomaticFire => m_Wrapper.m_InputInteractionsEX_AutomaticFire;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -828,6 +844,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Fire.started += instance.OnFire;
             @Fire.performed += instance.OnFire;
             @Fire.canceled += instance.OnFire;
+            @AutomaticFire.started += instance.OnAutomaticFire;
+            @AutomaticFire.performed += instance.OnAutomaticFire;
+            @AutomaticFire.canceled += instance.OnAutomaticFire;
         }
 
         /// <summary>
@@ -842,6 +861,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Fire.started -= instance.OnFire;
             @Fire.performed -= instance.OnFire;
             @Fire.canceled -= instance.OnFire;
+            @AutomaticFire.started -= instance.OnAutomaticFire;
+            @AutomaticFire.performed -= instance.OnAutomaticFire;
+            @AutomaticFire.canceled -= instance.OnAutomaticFire;
         }
 
         /// <summary>
@@ -1044,5 +1066,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnFire(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Automatic Fire" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnAutomaticFire(InputAction.CallbackContext context);
     }
 }

@@ -419,7 +419,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1738864028}
         m_TargetAssemblyTypeName: InputInteractions, Assembly-CSharp
-        m_MethodName: OnFire
+        m_MethodName: OnAutomaticFire
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -431,6 +431,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6dc11aa1-b2d6-4a36-89e7-ac135dcfe60b
     m_ActionName: 'Input Interactions EX/Fire[/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1738864028}
+        m_TargetAssemblyTypeName: InputInteractions, Assembly-CSharp
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 06afb4c5-7b50-4626-84a3-ac2bf54f838b
+    m_ActionName: 'Input Interactions EX/Automatic Fire[/Keyboard/space]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard & Mouse
   m_DefaultActionMap: Input Interactions EX

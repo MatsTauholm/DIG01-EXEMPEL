@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
@@ -17,12 +18,17 @@ public class InputInteractions : MonoBehaviour
     [SerializeField] private Transform firePoint;
     [SerializeField] private float bulletSpeed = 10f;
     [SerializeField] private float bulletSpread = 15f;
+    private bool isAutomaticFireEnabled = false;
 
     private void Start()
     {
         targetZoom = normalZoom;
     }
 
+    public void OnAutomaticFire(InputAction.CallbackContext context)
+    {
+        isAutomaticFireEnabled = context.ReadValueAsButton();
+    }
 
     public void OnFire(InputAction.CallbackContext context)
     {
@@ -65,64 +71,28 @@ public class InputInteractions : MonoBehaviour
             Shoot(superBulletPrefab);
             Debug.Log("Performed a Slow Tap!");
         }
+    }        
+
+    private void Update()
+    {
+        AutomaticFire();
+        ZoomCamera();
     }
 
-             
-
-//// Button released before completing a SlowTap
-//if (context.canceled)
-//{
-//    Shoot(bulletPrefab);
-//    targetZoom = normalZoom;
-//    Debug.Log("Stopped charging");
-//}
-
-//public void OnHold(InputAction.CallbackContext ctx)
-//{
-//    if (ctx.performed)
-//    {
-//        targetZoom = zoomedIn;
-//        Debug.Log("Holding!");
-//    }
-
-//    if (ctx.canceled)
-//    {
-//        targetZoom = normalZoom;
-//        Debug.Log("Held for " + ctx.duration + " seconds.");
-//    }
-//}
-
-//public void OnMultiTap(InputAction.CallbackContext ctx)
-//{
-//    if (ctx.performed)
-//    {
-//        Debug.Log("Multi Tapped!");
-//    }
-//}
-
-//public void OnTap(InputAction.CallbackContext ctx)
-//{
-//    if (ctx.performed)
-//    {
-//        Debug.Log("Tapped!");
-//    }
-//}
-
-//public void OnSlowTap(InputAction.CallbackContext ctx)
-//{
-//    if (ctx.performed)
-//    {
-//        Shoot(superBulletPrefab);
-//        Debug.Log("Slow Tapped!");
-//    }
-//}
-
-private void Update()
+    private void ZoomCamera()
     {
         Camera.main.orthographicSize = Mathf.Lerp(
         Camera.main.orthographicSize,
         targetZoom,
-        zoomSpeed * Time.deltaTime) ;
+        zoomSpeed * Time.deltaTime);
+    }
+
+    private void AutomaticFire()
+    {
+        if (isAutomaticFireEnabled)
+        {
+            Shoot(bulletPrefab);
+        }
     }
 
     private void Shoot(GameObject bulletPrefab)
@@ -143,6 +113,4 @@ private void Update()
             bullet.GetComponent<Rigidbody2D>().linearVelocity = shotDirection * bulletSpeed;
         }
     }
-
-
 }
