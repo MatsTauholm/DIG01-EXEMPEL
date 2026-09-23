@@ -20,9 +20,13 @@ public class InputInteractions : MonoBehaviour
     [SerializeField] private float bulletSpread = 15f;
     private bool isAutomaticFireEnabled = false;
 
+    private Rigidbody2D rb;
+    private Vector2 mousePosition;
+
     private void Start()
     {
         targetZoom = normalZoom;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public void OnAutomaticFire(InputAction.CallbackContext context)
@@ -77,6 +81,7 @@ public class InputInteractions : MonoBehaviour
     {
         AutomaticFire();
         ZoomCamera();
+        RotateTowardMouse();
     }
 
     private void ZoomCamera()
@@ -112,5 +117,20 @@ public class InputInteractions : MonoBehaviour
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
             bullet.GetComponent<Rigidbody2D>().linearVelocity = shotDirection * bulletSpeed;
         }
+    }
+
+    public void RotateTowardMouse()
+    { 
+        //Get the current mouse position
+        mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+
+        // Calculate the direction from the object to the mouse
+        Vector2 direction = mousePosition - rb.position;
+
+        // Calculate the angle in degrees
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        // Set the rotation of the object to face the mouse
+        rb.rotation = angle;
     }
 }
