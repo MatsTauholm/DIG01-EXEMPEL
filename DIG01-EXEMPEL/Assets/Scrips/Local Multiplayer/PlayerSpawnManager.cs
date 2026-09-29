@@ -3,7 +3,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerSpawnManager : MonoBehaviour
 {
-
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private GameObject playerPrefab;
 

@@ -13,7 +13,8 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": true,
+                    "priority": 0
                 },
                 {
                     "name": "Click",
@@ -22,7 +23,8 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": false,
+                    "priority": 0
                 },
                 {
                     "name": "Jump",
@@ -31,7 +33,8 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": false,
+                    "priority": 0
                 },
                 {
                     "name": "Look",
@@ -40,7 +43,8 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": false,
+                    "priority": 0
                 },
                 {
                     "name": "Attack",
@@ -49,7 +53,8 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": false,
+                    "priority": 0
                 },
                 {
                     "name": "Transform",
@@ -58,7 +63,8 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": false,
+                    "priority": 0
                 },
                 {
                     "name": "Fly",
@@ -67,7 +73,8 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": false,
+                    "priority": 0
                 },
                 {
                     "name": "Restart",
@@ -76,7 +83,8 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": false,
+                    "priority": 0
                 }
             ],
             "bindings": [
@@ -217,7 +225,7 @@
                     "id": "64843376-2f6a-4f0b-a21d-6a18aa7e3fc2",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "AxisDeadzone",
                     "groups": ";Gamepad",
                     "action": "Look",
                     "isComposite": false,
@@ -296,84 +304,46 @@
             "id": "43e12af8-5fc8-4cce-a56a-6570cac1ee8f",
             "actions": [
                 {
-                    "name": "Hold",
+                    "name": "Fire",
                     "type": "Button",
-                    "id": "cbcb2eb7-399b-451d-86c5-7f86e66a640e",
+                    "id": "6dc11aa1-b2d6-4a36-89e7-ac135dcfe60b",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": false,
+                    "priority": 0
                 },
                 {
-                    "name": "Tap",
+                    "name": "Automatic Fire",
                     "type": "Button",
-                    "id": "3f1cd046-5872-435c-835b-281bb9485ee0",
+                    "id": "06afb4c5-7b50-4626-84a3-ac2bf54f838b",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "MultiTap",
-                    "type": "Button",
-                    "id": "e08b8ca3-58ce-49c0-8cb9-4ab999e56866",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "SlowTap",
-                    "type": "Button",
-                    "id": "a5e22461-2cfc-42f4-85e9-572c7309d8c1",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": false,
+                    "priority": 0
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "0df398f2-ca96-4800-b927-3a142ea9f61c",
-                    "path": "<Keyboard>/space",
-                    "interactions": "Hold(duration=0.6)",
+                    "id": "5ee8b1d0-acbd-4630-beb3-957be89f1c5f",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Hold(duration=0.7),MultiTap(tapTime=0.2,tapDelay=0.2),Tap(duration=0.2),SlowTap(duration=0.7)",
                     "processors": "",
-                    "groups": ";Keyboard",
-                    "action": "Hold",
+                    "groups": ";Keyboard & Mouse;Mouse",
+                    "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "5524a27e-0643-4d22-9973-f425601b2c1c",
+                    "id": "1405c8c8-06d5-4a94-823d-107639736d7c",
                     "path": "<Keyboard>/space",
-                    "interactions": "Tap",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
-                    "groups": ";Keyboard",
-                    "action": "Tap",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "bfaa85b3-f25f-48f3-9799-7bbee77bd04f",
-                    "path": "<Keyboard>/space",
-                    "interactions": "MultiTap",
-                    "processors": "",
-                    "groups": ";Keyboard",
-                    "action": "MultiTap",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "78a5fe68-9c11-41bf-a3f8-dc9706b0846a",
-                    "path": "<Keyboard>/space",
-                    "interactions": "SlowTap(duration=0.4)",
-                    "processors": "",
-                    "groups": "",
-                    "action": "SlowTap",
+                    "groups": ";Keyboard & Mouse;Keyboard",
+                    "action": "Automatic Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

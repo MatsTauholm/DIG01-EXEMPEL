@@ -6,9 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class GameRestart : MonoBehaviour
 {
-    void OnRestart(InputValue button)
+    void Update()
     {
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.name);
+        if(Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            Scene currentScene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(currentScene.name);
+        }       
     }
 }

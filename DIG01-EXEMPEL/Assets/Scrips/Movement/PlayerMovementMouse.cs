@@ -18,15 +18,14 @@ public class PlayerMovementMouse : MonoBehaviour
 
     private MovementSystemManager movementSystemManager;
 
-    void Awake()
+    void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        movementSystemManager = FindFirstObjectByType<MovementSystemManager>();
+        movementSystemManager = FindAnyObjectByType<MovementSystemManager>();
     }
 
     void OnClick(InputValue button)
     {
-        Debug.Log("Mouse Clicked");
         targetPosition = mousePosition;
     }
 
