@@ -41,7 +41,7 @@ public class PlayerMove : MonoBehaviour
     private void PlayerRotate()
     {
         //Get the current mouse position
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
         // Calculate the direction from the object to the mouse
         Vector2 direction = mousePosition - rb.position;

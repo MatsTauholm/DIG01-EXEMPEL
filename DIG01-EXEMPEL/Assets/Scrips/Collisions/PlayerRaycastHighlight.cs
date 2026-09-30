@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerRaycastHighlight : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class PlayerRaycastHighlight : MonoBehaviour
     void Shoot()
     {
         //Get the mouse position in world space
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         mousePos.z = 0f; // ensure z=0 in 2D
 
         //Calculate the direction from player to mouse
@@ -42,7 +43,7 @@ public class PlayerRaycastHighlight : MonoBehaviour
         {
             GameObject hitObject = hit.collider.gameObject;
 
-            // If it's a new object, highlight it
+            // If it's a new object, highlight it and clear the previous one
             if (hitObject != lastHighlighted)
             {
                 ClearHighlight();

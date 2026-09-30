@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 8726936}
   - component: {fileID: 8726935}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Fire Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
