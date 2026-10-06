@@ -415,7 +415,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""5ee8b1d0-acbd-4630-beb3-957be89f1c5f"",
                     ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": ""Hold(duration=0.7),MultiTap(tapTime=0.2,tapDelay=0.2),Tap(duration=0.2),SlowTap(duration=0.7)"",
+                    ""interactions"": ""Hold(duration=0.7),MultiTap(tapTime=0.2,tapDelay=0.2),SlowTap(duration=0.7),Tap(duration=0.2)"",
                     ""processors"": """",
                     ""groups"": "";Keyboard & Mouse;Mouse"",
                     ""action"": ""Fire"",
