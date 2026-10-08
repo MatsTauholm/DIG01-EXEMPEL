@@ -52,24 +52,21 @@ public class InputInteractions : MonoBehaviour
         }
 
         // A Tap interaction completed
-        if (context.performed &&
-            context.interaction is UnityEngine.InputSystem.Interactions.TapInteraction)
+        if (context.performed && context.interaction is TapInteraction)
         {
             Shoot(bulletPrefab);
             Debug.Log("Performed a Tap!");
         }
 
         // A MultiTap interaction completed
-        if (context.performed &&
-            context.interaction is UnityEngine.InputSystem.Interactions.MultiTapInteraction)
+        if (context.performed && context.interaction is MultiTapInteraction)
         {
             MultiShoot();
             Debug.Log("Multi Tapping!");
         }
 
-        // A SlowTap interaction completed
-        if (context.canceled &&
-            context.interaction is UnityEngine.InputSystem.Interactions.SlowTapInteraction)
+        // A Interaction is canceled and it was a Slow Tap
+        if (context.canceled && context.interaction is SlowTapInteraction)
         {
             Shoot(superBulletPrefab);
             Debug.Log("Performed a Slow Tap!");
