@@ -16,7 +16,6 @@ public class PlayerMove : MonoBehaviour
     private Vector2 velocity = Vector2.zero;
     private Rigidbody2D rb;
 
-
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -53,4 +52,3 @@ public class PlayerMove : MonoBehaviour
         rb.rotation = angle;
     }
 }
-

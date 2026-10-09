@@ -13,7 +13,7 @@ public class ParallaxEffect : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         float distance = cam.transform.position.x * parallaxEffect; //Calculate the distance the background should move based on the camera's position and the parallax effect factor
         float movement = cam.transform.position.x * (1 - parallaxEffect); //Calculate the movement of the background based on the camera's position and the parallax effect factor
