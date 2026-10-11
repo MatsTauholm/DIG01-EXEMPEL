@@ -17,21 +17,8 @@ public class MoveBetweenPoints : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 newPosition = Vector2.MoveTowards(
-            rb.position,
-            target.position,
-            speed * Time.fixedDeltaTime
-        );
-
-        rb.MovePosition(newPosition);
-
-        //transform.position = Vector2.MoveTowards(
-        //    rb.position,
-        //    target.position,
-        //    speed * Time.fixedDeltaTime
-        //);
-
-
+        transform.position = Vector2.MoveTowards(rb.position, target.position, speed * Time.fixedDeltaTime);
+        rb.MovePosition(Vector2.MoveTowards(rb.position, target.position, speed * Time.fixedDeltaTime));
 
         // Check if we reached the target
         if (Vector2.Distance(rb.position, target.position) < 0.01f)
