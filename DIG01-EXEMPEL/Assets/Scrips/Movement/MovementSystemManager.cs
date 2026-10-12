@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class MovementSystemManager : MonoBehaviour
 {
-    [SerializeField] private GameObject infoTextKeyBoard, infoTextMouse;
+    [SerializeField] private GameObject infoTextKeyBoard;
     public int currentMovement = 1;
 
     void Update()
@@ -17,17 +17,19 @@ public class MovementSystemManager : MonoBehaviour
             currentMovement = 3;
         else if (Keyboard.current.digit4Key.wasPressedThisFrame)
             currentMovement = 4;
+        else if (Keyboard.current.digit5Key.wasPressedThisFrame)
+            currentMovement = 5;
+        else if (Keyboard.current.digit6Key.wasPressedThisFrame)
+            currentMovement = 6;
 
         switch (currentMovement)
         {
             case 1:
                 infoTextKeyBoard.GetComponent<ChangeInfoText>().UpdateText("Transfrom Translate");
-                infoTextMouse.GetComponent<ChangeInfoText>().UpdateText("Vector2 MoveTowards");
                 break;
 
             case 2:
                 infoTextKeyBoard.GetComponent<ChangeInfoText>().UpdateText("Rigidbody AddForce");
-                infoTextMouse.GetComponent<ChangeInfoText>().UpdateText("Vector2 SmoothDamp");
                 break;
 
             case 3:
@@ -36,6 +38,14 @@ public class MovementSystemManager : MonoBehaviour
 
             case 4:
                 infoTextKeyBoard.GetComponent<ChangeInfoText>().UpdateText("Rigidbody Velocity");
+                break;
+
+            case 5:
+                infoTextKeyBoard.GetComponent<ChangeInfoText>().UpdateText("Vector2 MoveTowards");
+                break;
+
+            case 6:
+                infoTextKeyBoard.GetComponent<ChangeInfoText>().UpdateText("Vector2 SmoothDamp");
                 break;
         }
     }

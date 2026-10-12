@@ -15,10 +15,12 @@ public class PlayerMovementGamepad : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 aimInput;
     private float attackAmount;
+    private Gamepad gamepad;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        gamepad = Gamepad.current;
     }
 
     void OnMove(InputValue value)
@@ -30,7 +32,6 @@ public class PlayerMovementGamepad : MonoBehaviour
     {
         aimInput = value.Get<Vector2>();
     }
-
 
     private void Update()
     {
@@ -56,10 +57,12 @@ public class PlayerMovementGamepad : MonoBehaviour
 
     private void Aim() //Rotation (Aim)
     {
+        if (aimInput.magnitude < 0.2f)
+            return;
+
         float targetAngle = Mathf.Atan2(aimInput.y, aimInput.x) * Mathf.Rad2Deg - 90f;
         float angle = Mathf.LerpAngle(rb.rotation, targetAngle, rotationSpeed * Time.fixedDeltaTime / 360f);
         rb.MoveRotation(angle);
     }
-
 }
 

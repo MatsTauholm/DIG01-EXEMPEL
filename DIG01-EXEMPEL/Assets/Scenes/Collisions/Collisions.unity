@@ -490,7 +490,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2386363383736886921, guid: f7a3d03d4712d704096ed32a2ede19d5, type: 3}
       propertyPath: explosionRadius
-      value: 5.53
+      value: 5.46
       objectReference: {fileID: 0}
     - target: {fileID: 6327237306389891917, guid: f7a3d03d4712d704096ed32a2ede19d5, type: 3}
       propertyPath: m_ActionEvents.Array.size
