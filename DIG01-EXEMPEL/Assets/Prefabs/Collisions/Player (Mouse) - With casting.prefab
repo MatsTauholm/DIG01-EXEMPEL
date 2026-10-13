@@ -52,7 +52,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1437248837167796962, guid: 5ff4e84c2935ba2479d017451fd213e6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -83,7 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 051ff1457f0b1c94aac0aed81ece081b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
-  moveSpeed: 1
+  moveSpeed: 2
   moveTime: 200
 --- !u!114 &6716350012253291441
 MonoBehaviour:

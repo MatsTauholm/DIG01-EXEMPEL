@@ -16,7 +16,6 @@ public class PlayerMove : MonoBehaviour
     private Vector2 velocity = Vector2.zero;
     private Rigidbody2D rb;
 
-
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -41,7 +40,7 @@ public class PlayerMove : MonoBehaviour
     private void PlayerRotate()
     {
         //Get the current mouse position
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
         // Calculate the direction from the object to the mouse
         Vector2 direction = mousePosition - rb.position;
@@ -53,4 +52,3 @@ public class PlayerMove : MonoBehaviour
         rb.rotation = angle;
     }
 }
-

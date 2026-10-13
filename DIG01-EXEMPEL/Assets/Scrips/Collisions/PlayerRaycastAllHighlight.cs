@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using System.Collections.Generic;
 
 public class PlayerRaycastAllHighlight : MonoBehaviour
@@ -11,7 +12,7 @@ public class PlayerRaycastAllHighlight : MonoBehaviour
     void Update()
     {
         // Get mouse position in world
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         mousePos.z = 0f;
 
         // Direction from player to mouse

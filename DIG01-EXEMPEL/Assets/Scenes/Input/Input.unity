@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 8726936}
   - component: {fileID: 8726935}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Fire Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -574,6 +574,7 @@ GameObject:
   - component: {fileID: 1738864032}
   - component: {fileID: 1738864029}
   - component: {fileID: 1738864028}
+  - component: {fileID: 1738864033}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -676,6 +677,18 @@ MonoBehaviour:
     m_ActionName: 'Input Interactions EX/Fire[/Mouse/leftButton]'
   - m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1738864028}
+        m_TargetAssemblyTypeName: InputInteractions, Assembly-CSharp
+        m_MethodName: OnAutomaticFire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 8726935}
         m_TargetAssemblyTypeName: ChangeColor, Assembly-CSharp
         m_MethodName: ChangeColorToRed
@@ -688,13 +701,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1738864028}
-        m_TargetAssemblyTypeName: InputInteractions, Assembly-CSharp
-        m_MethodName: OnAutomaticFire
-        m_Mode: 0
+      - m_Target: {fileID: 8726936}
+        m_TargetAssemblyTypeName: UnityEngine.SpriteRenderer, UnityEngine
+        m_MethodName: set_sprite
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Sprite, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -810,6 +823,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1738864033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738864027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b84cf0282c341743baf073b75571f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GunRotation
 --- !u!1 &1829370870
 GameObject:
   m_ObjectHideFlags: 0

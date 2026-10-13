@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,13 +9,18 @@ public class PlayerMovementGamepad : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotationSpeed = 720f;
 
+    [SerializeField] private Transform aimRay;
+
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private Vector2 aimInput;
+    private float attackAmount;
+    private Gamepad gamepad;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        gamepad = Gamepad.current;
     }
 
     void OnMove(InputValue value)
@@ -27,12 +33,33 @@ public class PlayerMovementGamepad : MonoBehaviour
         aimInput = value.Get<Vector2>();
     }
 
+    private void Update()
+    {
+        Move();
+        Attack();
+    }
+
+    private void Attack()
+    {
+        attackAmount = Gamepad.current.rightTrigger.ReadValue();
+        aimRay.localScale = new Vector2(attackAmount * .5f, aimRay.transform.localScale.y);
+    }   
+
+    private void Move()
+    {
+        rb.linearVelocity = moveInput * moveSpeed;
+    }
+
     private void FixedUpdate()
     {
-        //Movement
-        rb.linearVelocity = moveInput * moveSpeed;
+        Aim(); 
+    }
 
-        //Rotation (Aim)
+    private void Aim() //Rotation (Aim)
+    {
+        if (aimInput.magnitude < 0.2f)
+            return;
+
         float targetAngle = Mathf.Atan2(aimInput.y, aimInput.x) * Mathf.Rad2Deg - 90f;
         float angle = Mathf.LerpAngle(rb.rotation, targetAngle, rotationSpeed * Time.fixedDeltaTime / 360f);
         rb.MoveRotation(angle);
