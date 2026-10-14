@@ -268,6 +268,10 @@ PrefabInstance:
       propertyPath: rotationSpeed
       value: 1500
       objectReference: {fileID: 0}
+    - target: {fileID: 3766886050068236240, guid: ef96bba0fed927a4e8aecb5a4c22ea13, type: 3}
+      propertyPath: smoothRotation
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9130770029410931470, guid: ef96bba0fed927a4e8aecb5a4c22ea13, type: 3}
       propertyPath: m_Name
       value: Player (Gamepad)
