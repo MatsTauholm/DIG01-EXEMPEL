@@ -8,6 +8,7 @@ public class PlayerMovementGamepad : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float rotationSpeed = 720f;
+    [SerializeField] private bool smoothRotation;
 
     [SerializeField] private Transform aimRay;
 
@@ -57,12 +58,20 @@ public class PlayerMovementGamepad : MonoBehaviour
 
     private void Aim() //Rotation (Aim)
     {
-        if (aimInput.magnitude < 0.2f)
+        if (aimInput.magnitude < 0.2f) //Stop the player from rotating back to origin when the right stick is not being used
             return;
 
-        float targetAngle = Mathf.Atan2(aimInput.y, aimInput.x) * Mathf.Rad2Deg - 90f;
-        float angle = Mathf.LerpAngle(rb.rotation, targetAngle, rotationSpeed * Time.fixedDeltaTime / 360f);
-        rb.MoveRotation(angle);
+        float targetAngle = Vector2.SignedAngle(Vector2.up, aimInput); // Calculate the target angle based on the aim input OBS! If object is rotated to the right, change Vector2.up to Vector2.right
+
+        if (smoothRotation)
+        {
+            float smoothAngle = Mathf.LerpAngle(rb.rotation, targetAngle, rotationSpeed * Time.fixedDeltaTime / 360f);  //Lerp the angle for smooth rotation
+            rb.MoveRotation(smoothAngle);
+        }
+        else
+        {
+            rb.MoveRotation(targetAngle);
+        }
     }
 }
 
