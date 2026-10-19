@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public class Bomb : MonoBehaviour
 {
-    [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private ContactFilter2D enemyLayer;
     [SerializeField] private float explosionRadius = 5f;
 
     void Update()
@@ -20,7 +20,7 @@ public class Bomb : MonoBehaviour
     void DestroyEnemies()
     {
         //Kollar efter alla colliders inom cirkeln och lägger till dessa i en array
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, explosionRadius, enemyLayer); 
+        ColliderArray2D hitEnemies = Physics2D.OverlapCircle(transform.position, explosionRadius, enemyLayer); 
 
         foreach (Collider2D enemy in hitEnemies) //Kolla igenom hela array:n       
         {

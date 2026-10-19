@@ -26,12 +26,7 @@ public class DetectPlayer : MonoBehaviour
     void CheckBelow()
     {
         // Perform a CircleCast downwards to check for the player (see the inspector for the detectionLayer to make sure it includes the player's layer)
-        RaycastHit2D hit = Physics2D.CircleCast( 
-            transform.position,
-            circleRadius,
-            Vector2.down,
-            castDistance,
-            detectionLayer);
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, circleRadius, Vector2.down, castDistance, detectionLayer);
         {
             if (hit == true)
             {
@@ -43,7 +38,7 @@ public class DetectPlayer : MonoBehaviour
 
     private void Fall()
     {
-        rb.WakeUp(); // Make the Rigidbody2D active and  respond to physics (start falling)
+        rb.WakeUp(); // Make the Rigidbody2D active and respond to physics (start falling)
         spriteRenderer.color = Color.red; // Change color to red to indicate the object is falling
     }
 

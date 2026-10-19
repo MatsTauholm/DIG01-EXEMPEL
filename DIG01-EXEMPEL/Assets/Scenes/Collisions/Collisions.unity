@@ -423,14 +423,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6628030799929229168, guid: c380f6c29a1004a40a646ccc2ca1d4e6, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6716350012253291441, guid: c380f6c29a1004a40a646ccc2ca1d4e6, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -491,6 +483,14 @@ PrefabInstance:
     - target: {fileID: 2386363383736886921, guid: f7a3d03d4712d704096ed32a2ede19d5, type: 3}
       propertyPath: explosionRadius
       value: 5.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 2386363383736886921, guid: f7a3d03d4712d704096ed32a2ede19d5, type: 3}
+      propertyPath: enemyLayer.useLayerMask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2386363383736886921, guid: f7a3d03d4712d704096ed32a2ede19d5, type: 3}
+      propertyPath: enemyLayer.layerMask.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 6327237306389891917, guid: f7a3d03d4712d704096ed32a2ede19d5, type: 3}
       propertyPath: m_ActionEvents.Array.size
@@ -609,7 +609,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6680944361874674592, guid: 77e3112001c5bb746b19e1a1b81e4f65, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.75
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6680944361874674592, guid: 77e3112001c5bb746b19e1a1b81e4f65, type: 3}
       propertyPath: m_LocalPosition.y

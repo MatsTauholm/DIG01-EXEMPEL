@@ -62,9 +62,6 @@ PrefabInstance:
       addedObject: {fileID: 4814158600126319484}
     - targetCorrespondingSourceObject: {fileID: 1541474108454453292, guid: 5ff4e84c2935ba2479d017451fd213e6, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6716350012253291441}
-    - targetCorrespondingSourceObject: {fileID: 1541474108454453292, guid: 5ff4e84c2935ba2479d017451fd213e6, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 6628030799929229168}
   m_SourcePrefab: {fileID: 100100000, guid: 5ff4e84c2935ba2479d017451fd213e6, type: 3}
 --- !u!1 &405428643024640515 stripped
@@ -85,8 +82,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
   moveSpeed: 2
-  moveTime: 200
---- !u!114 &6716350012253291441
+  moveTime: 300
+--- !u!114 &6628030799929229168
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,22 +92,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 405428643024640515}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 955edf21b51df574586da21d89cfd317, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerRaycastAllHighlight
-  maxDistance: 10
-  hitLayers:
-    serializedVersion: 2
-    m_Bits: 256
---- !u!114 &6628030799929229168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 405428643024640515}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53c68718e10318846ada4fb9c131329b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerRaycastHighlight
@@ -118,3 +99,4 @@ MonoBehaviour:
   hitLayers:
     serializedVersion: 2
     m_Bits: 256
+  checkAllHits: 0
