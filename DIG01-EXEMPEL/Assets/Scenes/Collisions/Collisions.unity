@@ -482,30 +482,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2386363383736886921, guid: f7a3d03d4712d704096ed32a2ede19d5, type: 3}
       propertyPath: explosionRadius
-      value: 5.46
+      value: 4.4
       objectReference: {fileID: 0}
-    - target: {fileID: 2386363383736886921, guid: f7a3d03d4712d704096ed32a2ede19d5, type: 3}
-      propertyPath: enemyLayer.useLayerMask
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2386363383736886921, guid: f7a3d03d4712d704096ed32a2ede19d5, type: 3}
-      propertyPath: enemyLayer.layerMask.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 6327237306389891917, guid: f7a3d03d4712d704096ed32a2ede19d5, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 6327237306389891917, guid: f7a3d03d4712d704096ed32a2ede19d5, type: 3}
-      propertyPath: m_ActionEvents.Array.data[13].m_ActionId
-      value: 5a233f3f-f922-4b01-b592-fc79a060748b
-      objectReference: {fileID: 0}
-    - target: {fileID: 6327237306389891917, guid: f7a3d03d4712d704096ed32a2ede19d5, type: 3}
-      propertyPath: m_ActionEvents.Array.data[13].m_ActionName
-      value: 'Player/MouseMove[/Mouse/leftButton]'
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6327237306389891917, guid: f7a3d03d4712d704096ed32a2ede19d5, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

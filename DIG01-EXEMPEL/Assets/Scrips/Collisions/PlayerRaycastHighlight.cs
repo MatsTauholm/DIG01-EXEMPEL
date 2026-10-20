@@ -56,6 +56,7 @@ public class PlayerRaycastHighlight : MonoBehaviour
             ClearHighlight();
         }
     }
+
     private void HandleHits(RaycastHit2D[] hits)
     {
         if (hits != null)
@@ -67,7 +68,7 @@ public class PlayerRaycastHighlight : MonoBehaviour
                 Highlight(hitObject);
                 lastHighlightedObjects.Add(hitObject);
             }
-
+          
             if (hits.Length == 0)
             {
                 //No hit, clear any previous highlight
